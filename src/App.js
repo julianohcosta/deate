@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState} from "react";
+import {MenuOutlined} from "@ant-design/icons";
+import SideBar from "./components/SideBar";
+import Main from "./components/Main";
+import Header from "./components/Header";
+import classes from './App.module.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    const [visible, setVisible] = useState(false);
+
+    const sideBarHandle = () => {
+        setVisible(prevValue => !prevValue)
+    }
+
+
+    return (
+        <div className={classes.container}>
+            <Header onClick={sideBarHandle}/>
+            <SideBar onSideBarClose={sideBarHandle} visible={visible}/>
+            <Main/>
+        </div>
+    )
+};
 
 export default App;
