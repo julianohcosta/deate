@@ -1,7 +1,15 @@
 
 .main {
     background-color: #F2E9D8;
-    margin: 0 auto;
-    height: calc(100vh - 2.953981707317073em);
+    margin: 1em auto;
     width: 90%;
+    border: 2px solid #7f8fad;
+    border-radius: 4px;
+}
+
+.header-bar {
+    width: 100%;
+    background-color: var(--bg-secondary-clr);
+    height: .25em;
+
 }

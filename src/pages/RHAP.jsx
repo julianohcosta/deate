@@ -11,16 +11,14 @@ const RHAP = () => {
 
   return (
     <>
-      <div style={{
-        backgroundColor: 'white'
-      }}>
-        <Divider orientation="center" style={{marginTop: '0'}}>Opções de Consulta</Divider>
+      <div >
+        <Divider orientation="center" style={{marginTop: '0', marginBottom: '0'}}>Opções de Consulta</Divider>
         <Row align="middle" justify="center">
-          <Col span={8}/>
-          <Col span={4}>
+          <Col span={6}/>
+          <Col span={12}>
             <OptionBar disabled={disabled}/>
           </Col>
-          <Col span={8}/>
+          <Col span={6}/>
         </Row>
       </div>
 

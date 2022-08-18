@@ -3,6 +3,8 @@ import locale from 'antd/es/locale/pt_BR';
 
 const OptionBar = (props) => {
 
+  console.log(locale);
+
   const disabled = props.disabled && true;
 
   const onChange = (date, dateString) => {
