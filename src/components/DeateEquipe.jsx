@@ -23,19 +23,21 @@ const DeateEquipe = (props) => {
     console.log(checkedList);
   };
   return (
-    <div>
       <Space direction={`vertical`}>
-        <Checkbox
-          indeterminate={indeterminate}
-          disabled={disabled}
-          checked={checkAll}
-          onChange={onCheckAllChange}>
-          Selecionar Tudo
-        </Checkbox>
-        {props.children}
-        <Checkbox.Group options={equipes} value={checkedList} onChange={onChange}/>
+          <Checkbox
+            indeterminate={indeterminate}
+            disabled={disabled}
+            checked={checkAll}
+            onChange={onCheckAllChange}>
+            Selecionar Tudo
+          </Checkbox>
+          {props.children}
+          <Checkbox.Group
+            options={equipes}
+            value={checkedList}
+            onChange={onChange}
+          />
       </Space>
-    </div>
   )
 }
 export default DeateEquipe

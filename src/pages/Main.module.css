@@ -2,6 +2,6 @@
 .main {
     background-color: #F2E9D8;
     margin: 0 auto;
-
+    height: calc(100vh - 2.953981707317073em);
     width: 90%;
 }

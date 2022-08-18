@@ -1,4 +1,5 @@
-import {DatePicker, Space} from 'antd';
+import {ConfigProvider, DatePicker, Space} from 'antd';
+import locale from 'antd/es/locale/pt_BR';
 
 const OptionBar = (props) => {
 
@@ -9,10 +10,12 @@ const OptionBar = (props) => {
   };
 
   return (
-    <Space direction={`horizontal`} size={12}>
-      <DatePicker onChange={onChange} picker="year" disabled={disabled}/>
-      <DatePicker onChange={onChange} picker="month" disabled={disabled}/>
-    </Space>
+    <ConfigProvider locale={locale}>
+      <Space direction={`horizontal`} size={12}>
+        <DatePicker onChange={onChange} picker="year" disabled={disabled}/>
+        <DatePicker onChange={onChange} picker="month" disabled={disabled}/>
+      </Space>
+    </ConfigProvider>
   )
 }
 export default OptionBar

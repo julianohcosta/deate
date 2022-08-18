@@ -1,28 +1,44 @@
-import OptionBar from "../components/OptionBar";
-import classes from "./EstoqueMensal.module.css";
 import React, {useState} from "react";
-
-import { EQUIPES } from '../assets/deates'
+import OptionBar from "../components/OptionBar";
 import DeateEquipe from "../components/DeateEquipe";
+import {Col, Divider, Row} from 'antd';
+import {EQUIPES} from "../assets/deates";
+import style from './Style.module.css'
 
 const RHAP = () => {
 
   const [disabled, setDisabled] = useState(false);
 
-    return (
-      <div className={classes["container-estoque"]}>
-          <OptionBar
-            disabled={disabled}
-          />
-          <div className={classes["container-equipes"]}>Equipes</div>
-          <div className={classes["container-deate"]}>Deate</div>
-          <div className={classes["container-btn"]}>Button</div>
-        <DeateEquipe
-          disabled={disabled}
-          equipes={EQUIPES}
-        />
+  return (
+    <>
+      <div style={{
+        backgroundColor: 'white'
+      }}>
+        <Divider orientation="center" style={{marginTop: '0'}}>Opções de Consulta</Divider>
+        <Row align="middle" justify="center">
+          <Col span={8}/>
+          <Col span={4}>
+            <OptionBar disabled={disabled}/>
+          </Col>
+          <Col span={8}/>
+        </Row>
       </div>
-    )
+
+      <Row
+        gutter={{xs: 8, sm: 16, md: 24, lg: 32}}
+        className={style['gutter-row']}
+      >
+        <Col span={6} className={style['gutter-col']}>col-12</Col>
+        <Col span={18} className={style['gutter-col']}>
+          <DeateEquipe
+            disabled={disabled}
+            equipes={EQUIPES}
+          />
+        </Col>
+
+      </Row>
+    </>
+  )
 };
 
 export default RHAP;
