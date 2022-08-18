@@ -13,17 +13,17 @@ const DEATES = [
 ];
 
 const DEATESAPI = [
-  { resourceId: "ABht6BfCoK0QNk1AUrTE1g", sigla: "VR  BR  DEATE" },
-  { resourceId: "sMznB_Pi-2dH2qp87BmeeA", sigla: "VR  01RF  DEATE" },
-  { resourceId: "nPdrfNKy6SBY7Txa96JgKg", sigla: "VR  02RF  DEATE" },
-  { resourceId: "f5NdYoFWMEbt_Qp1uW8FjQ", sigla: "VR  03RF  DEATE" },
-  { resourceId: "_4T6N3IOwMJNo1QqdTpM8A", sigla: "VR  04RF  DEATE" },
-  { resourceId: "4Jub_GKoTzsjeswt9nbcVg", sigla: "VR  05RF  DEATE" },
-  { resourceId: "L_XLQJA8qkgWoIRBNSZjhg", sigla: "VR  06RF  DEATE" },
-  { resourceId: "QXtmXrU1RCbBCxtuGLu-CQ", sigla: "VR  07RF  DEATE" },
-  { resourceId: "lZLpu8foJDR3TDhc-V_-QQ", sigla: "VR  08RF  DEATE" },
-  { resourceId: "tYpU4Np91cSVp_ymlJnksg", sigla: "VR  09RF  DEATE" },
-  { resourceId: "8OB6QD3aNwhLaL2-SZW8nQ", sigla: "VR  10RF  DEATE" },
+  { codigo: "ABht6BfCoK0QNk1AUrTE1g", nome: "VR  BR  DEATE" },
+  { codigo: "sMznB_Pi-2dH2qp87BmeeA", nome: "VR  01RF  DEATE" },
+  { codigo: "nPdrfNKy6SBY7Txa96JgKg", nome: "VR  02RF  DEATE" },
+  { codigo: "f5NdYoFWMEbt_Qp1uW8FjQ", nome: "VR  03RF  DEATE" },
+  { codigo: "_4T6N3IOwMJNo1QqdTpM8A", nome: "VR  04RF  DEATE" },
+  { codigo: "4Jub_GKoTzsjeswt9nbcVg", nome: "VR  05RF  DEATE" },
+  { codigo: "L_XLQJA8qkgWoIRBNSZjhg", nome: "VR  06RF  DEATE" },
+  { codigo: "QXtmXrU1RCbBCxtuGLu-CQ", nome: "VR  07RF  DEATE" },
+  { codigo: "lZLpu8foJDR3TDhc-V_-QQ", nome: "VR  08RF  DEATE" },
+  { codigo: "tYpU4Np91cSVp_ymlJnksg", nome: "VR  09RF  DEATE" },
+  { codigo: "8OB6QD3aNwhLaL2-SZW8nQ", nome: "VR  10RF  DEATE" },
 ];
 
 const EQUIPES = [
