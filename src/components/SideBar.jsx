@@ -1,9 +1,6 @@
 import classes from "./SideBar.module.css";
-import { Drawer, Divider  } from 'antd';
-import { CloseCircleOutlined} from '@ant-design/icons';
-import EstoqueMensal from "../pages/EstoqueMensal";
-import RHAP from "../pages/RHAP";
-
+import {Divider, Drawer} from 'antd';
+import {CloseCircleOutlined} from '@ant-design/icons';
 
 const SideBar = props => {
 
@@ -20,7 +17,7 @@ const SideBar = props => {
             <Drawer
                 title={(
                     <p style={{
-                        fontSize:  '0.875rem',
+                        fontSize: '0.875rem',
                         paddingTop: '0.925em'
                     }}>
                         Relatórios - DEATE
@@ -37,9 +34,19 @@ const SideBar = props => {
             >
 
                 <Divider style={dividerStyle}>Relatórios</Divider>
-                <EstoqueMensal/>
-                <RHAP/>
-                <p>Outro Relatório</p>
+                <p className={classes.sidebarItem} onClick={() => {
+                    props.onSelectMenu('estoque');
+                }}>
+                    Estoque Mensal
+                </p>
+                <p className={classes.sidebarItem}  onClick={() => {
+                    props.onSelectMenu('rhap');
+                }}>
+                    RHAP
+                </p>
+                <p className={classes.sidebarItem} onClick={() => console.log("clicou")}>
+                    Outro Relatório
+                </p>
                 <Divider style={dividerStyle}>Resultado</Divider>
             </Drawer>
         </aside>

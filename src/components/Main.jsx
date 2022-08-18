@@ -1,9 +1,9 @@
 import classes from "./Main.module.css";
+const Main = props => {
 
-const Main = () => {
     return (
         <main className={classes.main}>
-
+            {props.children}
         </main>
     )
 };
