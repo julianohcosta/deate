@@ -1,6 +1,6 @@
 import classes from "./SideBar.module.css";
 import {Divider, Drawer} from 'antd';
-import {CloseCircleOutlined} from '@ant-design/icons';
+import { CloseCircleOutlined } from '@ant-design/icons';
 
 const SideBar = props => {
 
@@ -37,7 +37,6 @@ const SideBar = props => {
           color: 'var(--header-text-clr)'
         }}/>}
       >
-
         <Divider style={dividerStyle}>Relatórios</Divider>
         <p className={classes.sidebarItem} onClick={() => {
           props.onSelectMenu('estoque');

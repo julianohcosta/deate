@@ -1,8 +1,10 @@
+import List from "./List";
+
 const Deate = (props) => {
 
     return (
-        <div>
-            
+        <div >
+            <List unidades={props.unidades}/>
         </div>
     )
 }

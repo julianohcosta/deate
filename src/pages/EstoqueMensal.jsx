@@ -1,16 +1,40 @@
-import React from "react";
-
-import classes from "./EstoqueMensal.module.css";
+import {useEffect, useState} from "react";
+import RelatorioLayout from "../components/RelatorioLayout";
+import {EQUIPES} from "../assets/deates";
 
 const EstoqueMensal = () => {
+
+  const [unidades, setUnidades] = useState([]);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+    fetch('https://localhost:8443/ctx/run/DEATE%20-%20relatorios%20gerenciais%20-%20backend/deates', {signal})
+      .then(res => res.json())
+      .then(resposta => {
+        if (resposta['deates']){
+          setUnidades(resposta['deates']);
+          setLoaded(true);
+        }
+      }).catch(error => {
+        // TODO: Tratar erro
+    })
+    return () => {
+      controller.abort();
+    }
+  }, []);
+  
+
+  const [disabled, setDisabled] = useState(false);
   return (
     <>
-      <div className={classes["container-estoque"]}>
-        <div className={classes["container-option-bar"]}>optionBar</div>
-        <div className={classes["container-deate"]}>Deate</div>
-        <div className={classes["container-equipes"]}>Equipes</div>
-        <div className={classes["container-btn"]}>Button</div>
-      </div>
+      {loaded &&<RelatorioLayout
+                  disabled={disabled}
+                  equipes={EQUIPES}
+                  unidades={unidades}
+        />}
+
     </>
   );
 };
