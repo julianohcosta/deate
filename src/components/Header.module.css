@@ -1,5 +1,6 @@
 .main-header {
-    background-color: var(--secondary-text-color);
+    background-color: var(--bg-primary-clr);
+    color: var(--header-text-clr);
     padding: 0.5em 0;
 }
 
