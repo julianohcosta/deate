@@ -1,14 +1,17 @@
 .main-header {
-    background-color: var(--bg-primary-clr);
-    color: var(--header-text-clr);
-    padding: 0.5em 0;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  background-color: var(--bg-primary-clr);
+  color: var(--header-text-clr);
+  padding: 0.5em 0;
 }
 
 .header-text {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .hamburguer-menu {
-    font-size: 1rem;
-    padding: 0 1em 0 1em;
+  font-size: 1rem;
+  padding: 0 1em 0 1em;
 }
