@@ -1,0 +1,59 @@
+.creating-table-screen-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  left: 30% !important;
+  width: 40% !important;
+  /* height: 30%; */
+  border-radius: 12px;
+  font-size: 2rem;
+}
+
+.creating-table-screen--header {
+  display: flex;
+  width: 100%;
+  gap: 2rem;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.creating-table-screen--header--text {
+  display: flex;
+  color: #212529;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.creating-table-screen--header--text span {
+  font-weight: 600;
+}
+
+.progress-bar--container {
+  margin: 20px auto;
+  padding: 0;
+  width: 90%;
+  height: 30px;
+  overflow: hidden;
+  background: #e5e5e5;
+  border-radius: 6px;
+}
+
+.progress-bar--bar {
+  position: relative;
+  float: left;
+  min-width: 1%;
+  height: 100%;
+  background: #7f9dd3;
+}
+
+.progress-bar--percent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  font-family: inherit;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #212529;
+}
