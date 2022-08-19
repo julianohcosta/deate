@@ -18,6 +18,16 @@ const OptionBar = props => {
     props.onSelectedYear(values);
   };
 
+  const handleMonthChange = month => {
+    props.onSelectedMonth(month)
+  }
+
+  const rangeHandler = (dates) => {
+    if (dates && dates.length > 0){
+      props.onSelectedPeriod(dates)
+    }
+  }
+
   return (
     <>
       {props.type === "rhap" && (
@@ -66,7 +76,7 @@ const OptionBar = props => {
               fontSize: ".575rem",
             }}
             disabled={disabled}
-            onChange={handleChange}
+            onChange={handleMonthChange}
           >
             <Option value="">Todos</Option>
             <Option value="1">Janeiro</Option>
@@ -89,6 +99,7 @@ const OptionBar = props => {
           style={{ border: "0.8px solid #adb5bd" }}
           locale={locale}
           format={dateFormat}
+          onChange={rangeHandler}
         />
       )}
     </>

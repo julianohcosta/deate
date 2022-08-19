@@ -5,7 +5,13 @@ import {EQUIPES} from "../assets/deates";
 const EstoqueMensal = () => {
 
   const [unidades, setUnidades] = useState([]);
+  const [disabled, setDisabled] = useState(false);
+  const [selectedEquipes, setSelectedEquipes] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [periodo, setPeriodo] = useState({
+    inicial: '',
+    final: ''
+  });
 
   useEffect(() => {
     const controller = new AbortController();
@@ -26,18 +32,31 @@ const EstoqueMensal = () => {
       controller.abort();
     }
   }, []);
-  
 
-  const [disabled, setDisabled] = useState(false);
+  const selectEquipeHandler = (values) => {
+    setSelectedEquipes( () => [...values])
+  }
+
+  const periodoHandler = (dates) => {
+    const periodoInicial = dates[0].format('MM/DD/YYYY');
+    const periodoFinal = dates[1].format('MM/DD/YYYY');
+
+    setPeriodo({
+      inicial: periodoInicial,
+      final: periodoFinal
+    })
+  }
+
   return (
     <>
       {loaded &&<RelatorioLayout
                   disabled={disabled}
                   equipes={EQUIPES}
-                  unidades={unidades}
                   optionBarType={`estoque`}
+                  unidades={unidades}
+                  onSelectEquipes={selectEquipeHandler}
+                  onSelectedPeriod={periodoHandler}
         />}
-
     </>
   );
 };

@@ -7,6 +7,7 @@ import styles from "./RelatorioLayout.module.css";
 import Deate from "./Deate";
 
 const RelatorioLayout = props => {
+
   const getOptionBar = optionBarType => {
     switch (optionBarType) {
       case "rhap":
@@ -15,10 +16,15 @@ const RelatorioLayout = props => {
             type={`rhap`}
             disabled={props.disabled}
             onSelectedYear={props.onSelectedYear}
+            onSelectedMonth={props.onSelectedMonth}
           />
         );
       case "estoque":
-        return <OptionBar type={`estoque`} disabled={props.disabled} />;
+        return <OptionBar
+          type={`estoque`}
+          disabled={props.disabled}
+          onSelectedPeriod={props.onSelectedPeriod}
+        />;
     }
   };
 
