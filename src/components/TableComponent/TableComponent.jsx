@@ -1,17 +1,28 @@
 import React, { useMemo, useState } from "react";
 import * as XLSX from "xlsx";
-import {useTable, useSortBy, useGlobalFilter, usePagination,} from "react-table";
+import {
+  useTable,
+  useSortBy,
+  useGlobalFilter,
+  usePagination,
+} from "react-table";
 
-import {AiOutlineSortAscending, AiOutlineSortDescending,} from "react-icons/ai";
+import {
+  AiOutlineSortAscending,
+  AiOutlineSortDescending,
+} from "react-icons/ai";
 import { CSVLink } from "react-csv";
 import GlobalFilterComponent from "./GlobalFilterComponent";
 import classes from "./TableComponent.module.css";
 import { GROUPED_COLUMNS } from "./columns";
+import DUMMY_DATA from "./DUMMY_DATA.json";
 
 const TableComponent = props => {
   const [hiddenTable, setHiddenTable] = useState(false);
   const columns = useMemo(() => GROUPED_COLUMNS, []);
-  const data = useMemo(() => props.listaResultado, [props.listaResultado]);
+
+  const data = useMemo(() => DUMMY_DATA, []);
+  // const data = useMemo(() => props.listaResultado, [props.listaResultado]);
 
   const {
     getTableProps,
@@ -80,12 +91,12 @@ const TableComponent = props => {
       </div>
       <table {...getTableProps()}>
         <thead>
-        {headerGroups.map(headerGroup => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map(column => (
-              <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                {column.render("Header")}
-                <span>
+          {headerGroups.map(headerGroup => (
+            <tr {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map(column => (
+                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                  {column.render("Header")}
+                  <span>
                     {column.isSorted ? (
                       column.isSortedDesc ? (
                         <AiOutlineSortDescending />
@@ -96,24 +107,24 @@ const TableComponent = props => {
                       ""
                     )}
                   </span>
-              </th>
-            ))}
-          </tr>
-        ))}
+                </th>
+              ))}
+            </tr>
+          ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-        {page.map(row => {
-          prepareRow(row);
-          return (
-            <tr {...row.getRowProps()}>
-              {row.cells.map(cell => {
-                return (
-                  <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                );
-              })}
-            </tr>
-          );
-        })}
+          {page.map(row => {
+            prepareRow(row);
+            return (
+              <tr {...row.getRowProps()}>
+                {row.cells.map(cell => {
+                  return (
+                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                  );
+                })}
+              </tr>
+            );
+          })}
         </tbody>
       </table>
       <div className={classes["container-pagination"]}>
@@ -134,7 +145,6 @@ const TableComponent = props => {
                 : 0;
               gotoPage(pageNumber);
             }}
-            style={{ width: "50px" }}
           />
         </span>
         <select

@@ -44,7 +44,7 @@
 
 /********** Customize scrollbar *********/
 ::-webkit-scrollbar {
-  width: 1em;
+  width: 0.4em;
 }
 
 ::-webkit-scrollbar-track {
