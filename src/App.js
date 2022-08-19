@@ -3,6 +3,8 @@ import SideBar from "./components/SideBar";
 import Main from "./pages/Main";
 import EstoqueMensal from "./pages/EstoqueMensal";
 import RHAP from "./pages/RHAP";
+
+import useHttp from "./hooks/useHttp";
 import classes from "./App.module.css";
 
 function App() {
@@ -10,20 +12,20 @@ function App() {
   const [selectedMenu, setSelectedMenu] = useState();
   const [authenticated, setAuthenticated] = useState(false);
 
-  /** Realiza a autenticação no e-Processo */
+  const {isLoading, error, sendRequest, controller} = useHttp({
+    url: 'https://localhost:8443/ctx/run/DEATE%20-%20relatorios%20gerenciais%20-%20backend/autenticarEprocesso'
+    }, response => {
+    if (response.status) {
+      setAuthenticated(true);
+    }
+  });
+
   useEffect(() => {
-    fetch(
-      "https://localhost:8443/ctx/run/DEATE - relatorios gerenciais - backend/autenticarEprocesso"
-    )
-      .then(response => response.json())
-      .then(systemAuthenticated => {
-        console.log(systemAuthenticated);
-        setAuthenticated(systemAuthenticated.status);
-      })
-      .catch(e => {
-        console.log(e);
-      });
-  }, [authenticated]);
+    sendRequest();
+    return () => {
+      controller.abort();
+    };
+  }, []);
 
   const sideBarHandle = () => {
     setVisible(prevValue => !prevValue);

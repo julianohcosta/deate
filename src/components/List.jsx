@@ -4,12 +4,13 @@ import classes from "./List.module.css"
 const List = props => {
 
 
-
   return (
     <ul className={classes['lista-deates']}>
       {props.unidades?.map((unidade) => {
         return (
-          <ListItem unidade={unidade}
+          <ListItem
+            unidade={unidade}
+            onDeateClick={props.onDeateClick}
           />
         );
       })}

@@ -7,6 +7,7 @@ const ListItem = (props) => {
     <li
       key={unidade['codigo']}
       className={classes.unidade}
+      onClick={() => props.onDeateClick(unidade)}
     >
       {unidade['nome']}
     </li>
