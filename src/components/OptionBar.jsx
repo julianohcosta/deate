@@ -1,5 +1,7 @@
-import {Select, Space, DatePicker} from 'antd';
+import {Select, Space, DatePicker, ConfigProvider } from 'antd';
 import {useState} from "react";
+import 'moment/locale/zh-cn';
+import locale from 'antd/es/date-picker/locale/pt_BR';
 import './OptionBar.module.css'
 
 const {Option} = Select;
@@ -10,7 +12,7 @@ const OptionBar = (props) => {
 
   const disabled = props.disabled && true;
   const [status, setStatus] = useState('error');
-
+  const dateFormat = 'DD/MM/YYYY';
 
   const handleChange = (values) => {
 
@@ -93,8 +95,8 @@ const OptionBar = (props) => {
         </Select>
       </Space>
       }
-      {props.type === 'rhap' &&
-      <RangePicker showTime />
+      {props.type === 'estoque' &&
+      <RangePicker locale={locale} format={dateFormat}/>
       }
     </>
   )
