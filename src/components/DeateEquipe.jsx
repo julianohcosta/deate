@@ -10,14 +10,14 @@ const DeateEquipe = props => {
   const [indeterminate, setIndeterminate] = useState(true);
   const [checkAll, setCheckAll] = useState(false);
 
-  const onChange = (list) => {
+  const onChange = list => {
     setCheckedList(list);
     setIndeterminate(!!list.length && list.length < equipes.length);
     setCheckAll(list.length === equipes.length);
     props.onSelectEquipes(list);
   };
 
-  const onCheckAllChange = (e) => {
+  const onCheckAllChange = e => {
     setCheckedList(e.target.checked ? equipes : []);
     setIndeterminate(false);
     setCheckAll(e.target.checked);
@@ -25,14 +25,17 @@ const DeateEquipe = props => {
   };
   return (
     <Space direction={`vertical`}>
-      <Checkbox
-        indeterminate={indeterminate}
-        disabled={disabled}
-        checked={checkAll}
-        onChange={onCheckAllChange}
-      >
-        Selecionar Tudo
-      </Checkbox>
+      <div className={classes["optionbar-container"]}>
+        <Checkbox
+          indeterminate={indeterminate}
+          disabled={disabled}
+          checked={checkAll}
+          onChange={onCheckAllChange}
+        >
+          Selecionar Tudo
+        </Checkbox>
+        {props.optionBar}
+      </div>
       {props.children}
       <Checkbox.Group
         className={classes["container-list"]}

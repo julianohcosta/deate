@@ -1,11 +1,6 @@
 import List from "./List";
 
-const Deate = (props) => {
-
-    return (
-        <div >
-            <List unidades={props.unidades}/>
-        </div>
-    )
-}
-export default Deate
+const Deate = props => {
+  return <List unidades={props.unidades} />;
+};
+export default Deate;
