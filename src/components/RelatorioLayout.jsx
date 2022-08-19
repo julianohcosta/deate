@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import { Col, Divider, Row } from "antd";
+import React from "react";
+import {Col, Divider, Row} from "antd";
 import AntButton from "../components/UI/AntButton";
 import OptionBar from "./OptionBar";
 import DeateEquipe from "./DeateEquipe";
@@ -10,7 +10,7 @@ const RelatorioLayout = props => {
 
   const getOptionBar = (optionBarType) => {
 
-    switch (optionBarType){
+    switch (optionBarType) {
       case 'rhap':
         return (
           <OptionBar
@@ -33,20 +33,20 @@ const RelatorioLayout = props => {
     <>
       <Divider
         orientation="center"
-        style={{ marginTop: "0", marginBottom: "0" }}
+        style={{marginTop: "0", marginBottom: "0"}}
       >
         Opções de Consulta
       </Divider>
       <Row align="middle" justify="center">
-        <Col span={6} />
+        <Col span={6}/>
         <Col span={12}>
           {getOptionBar(props.optionBarType)}
         </Col>
-        <Col span={6} />
+        <Col span={6}/>
       </Row>
 
       <Row
-        gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}
+        gutter={{xs: 8, sm: 16, md: 24, lg: 32}}
         className={styles["gutter-row"]}
       >
         <Col span={6} className={styles["gutter-col"]}>
@@ -62,7 +62,7 @@ const RelatorioLayout = props => {
           />
         </Col>
       </Row>
-      <AntButton text={"Gerar"} />
+      <AntButton text={"Gerar"}/>
     </>
   );
 };

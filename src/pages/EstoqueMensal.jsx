@@ -16,6 +16,8 @@ const EstoqueMensal = () => {
         if (resposta['deates']){
           setUnidades(resposta['deates']);
           setLoaded(true);
+        } else {
+          // TODO: Avisar o usuário que a requisição falhou
         }
       }).catch(error => {
         // TODO: Tratar erro
@@ -33,6 +35,7 @@ const EstoqueMensal = () => {
                   disabled={disabled}
                   equipes={EQUIPES}
                   unidades={unidades}
+                  optionBarType={`estoque`}
         />}
 
     </>

@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import { message } from 'antd';
 import SideBar from "./components/SideBar";
 import Main from "./pages/Main";
 import EstoqueMensal from "./pages/EstoqueMensal";
@@ -33,10 +32,10 @@ function App() {
   const selectMenuHandler = menuName => {
     switch (menuName) {
       case "estoque":
-        setSelectedMenu(<EstoqueMensal />);
+        setSelectedMenu(<EstoqueMensal/>);
         break;
       case "rhap":
-        setSelectedMenu(<RHAP />);
+        setSelectedMenu(<RHAP/>);
         break;
       default:
         break;

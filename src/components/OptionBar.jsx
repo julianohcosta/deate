@@ -1,11 +1,11 @@
-import {Select, Space, DatePicker, ConfigProvider } from 'antd';
+import {DatePicker, Select, Space} from 'antd';
 import {useState} from "react";
 import 'moment/locale/zh-cn';
 import locale from 'antd/es/date-picker/locale/pt_BR';
 import './OptionBar.module.css'
 
 const {Option} = Select;
-const { RangePicker } = DatePicker;
+const {RangePicker} = DatePicker;
 
 
 const OptionBar = (props) => {
@@ -17,7 +17,7 @@ const OptionBar = (props) => {
   const handleChange = (values) => {
 
     /** Manipula a cor da borda do select do ano*/
-    values.length === 0 ?setStatus('error') : setStatus('')
+    values.length === 0 ? setStatus('error') : setStatus('')
     props.onSelectedYear(values)
   };
 
