@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Divider, Row } from "antd";
-import AntButton from "../components/UI/AntButton";
+import Button from "../components/UI/Button";
 import OptionBar from "./OptionBar";
 import DeateEquipe from "./DeateEquipe";
 import styles from "./RelatorioLayout.module.css";
@@ -48,7 +48,7 @@ const RelatorioLayout = props => {
           />
         </Col>
       </Row>
-      <AntButton text={"Gerar"} />
+      <Button text={"Gerar"} className={styles["btn-gerar"]} />
     </>
   );
 };

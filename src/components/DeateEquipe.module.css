@@ -17,7 +17,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 3em;
+  gap: 6em;
 }
 
 .container-list > label > span:nth-child(2) {
