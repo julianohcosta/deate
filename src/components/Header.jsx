@@ -8,7 +8,7 @@ const Header = props => {
   const [username, setusername] = useState("");
 
   useEffect(() => {
-    fetch("https://localhost:8443/ctx/run/Agendador/user")
+    fetch("https://localhost:8443/ctx/run/DEATE - relatorios gerenciais - backend/usuarioLogado")
       .then(response => response.json())
       .then(user => {
         if (user.username) {

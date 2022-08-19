@@ -4,13 +4,27 @@ import useHttp from "../hooks/useHttp";
 
 const Deate = props => {
 
-  const [selectedDeate, setSelectedDeate] = useState({codigo: '', nome: ''});
+  const [equipes, setEquipes] = useState([]);
 
-  const selectDeateHandler = (deate) => {
-    setSelectedDeate(deate)
+  let url = '';
+
+  const getEquipes = async (deate, url) => {
+    const response = await fetch(url)
   }
 
-  console.log(selectedDeate)
+
+  const selectDeateHandler = (deate) => {
+    if (deate.codigo.includes('|')){
+      url = `https://localhost:8443/ctx/run/DEATE - relatorios gerenciais - backend/equipesDeate?codigoDeate=${deate['codigo']}`
+    } else {
+      url = 'https://localhost:8443/ctx/run/DEATE - relatorios gerenciais - backend/equipesAPI?' +
+        'unidade='
+    }
+
+    const equipes = getEquipes(deate, url);
+  }
+
+  console.log(equipes)
 
   return <List
     unidades={props.unidades}

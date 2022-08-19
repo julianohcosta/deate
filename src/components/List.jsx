@@ -9,6 +9,7 @@ const List = props => {
       {props.unidades?.map((unidade) => {
         return (
           <ListItem
+            key={unidade['codigo']}
             unidade={unidade}
             onDeateClick={props.onDeateClick}
           />
