@@ -23,6 +23,7 @@ const DeateEquipe = props => {
     setCheckAll(e.target.checked);
     props.onSelectEquipes(e.target.checked ? equipes : []);
   };
+
   return (
     <Space direction={`vertical`}>
       <div className={classes["optionbar-container"]}>
