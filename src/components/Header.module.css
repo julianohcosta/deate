@@ -1,10 +1,14 @@
 .main-header {
-  display: flex;
-  justify-content: start;
-  align-items: center;
   background-color: var(--bg-primary-clr);
   color: var(--header-text-clr);
-  padding: 0.5em 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 32, 91, 1) 0%,
+    rgba(0, 32, 91, 1) 43%,
+    rgba(191, 199, 214, 1) 100%
+  );
+
+  position: relative;
 }
 
 .header-text {
@@ -16,18 +20,32 @@
   padding: 0 1em 0 1em;
 }
 
-.servidor {
-  text-align: right;
-}
 .username {
-  width: 250px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  position: absolute;
+  top: -1em;
+  right: 0;
   font-size: 0.6rem;
   font-weight: 700;
+  letter-spacing: 0.09em;
+  animation: slideUser 1s;
 }
 
-.logolabin{
-  height: 5em;
+@keyframes slideUser {
+  from {
+    top: -1em;
+    right: -20em;
+  }
+  to {
+    top: -1em;
+    right: 0;
+  }
+}
+
+.logolabin {
+  padding: 0.4em 0.3em;
+  width: 35%;
+  height: 35%;
+  /* background-color: var(--secondary-text-color); */
+  /* border-radius: 50%; */
+  /* box-shadow: 0 0 8px rgba(241, 235, 235, 0.55); */
 }
