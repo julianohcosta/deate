@@ -1,11 +1,33 @@
+import React, {useState} from "react";
 import { Col, Divider, Row } from "antd";
 import AntButton from "../components/UI/AntButton";
 import OptionBar from "./OptionBar";
-import styles from "./RelatorioLayout.module.css";
 import DeateEquipe from "./DeateEquipe";
-import React from "react";
+import styles from "./RelatorioLayout.module.css";
 
 const RelatorioLayout = props => {
+
+  const getOptionBar = (optionBarType) => {
+
+    switch (optionBarType){
+      case 'rhap':
+        return (
+          <OptionBar
+            type={`rhap`}
+            disabled={props.disabled}
+            onSelectedYear={props.onSelectedYear}
+          />
+        )
+      case 'estoque':
+        return (
+          <OptionBar
+            type={`estoque`}
+            disabled={props.disabled}
+          />
+        )
+    }
+  }
+
   return (
     <>
       <Divider
@@ -17,7 +39,7 @@ const RelatorioLayout = props => {
       <Row align="middle" justify="center">
         <Col span={6} />
         <Col span={12}>
-          <OptionBar disabled={props.disabled} />
+          {getOptionBar(props.optionBarType)}
         </Col>
         <Col span={6} />
       </Row>
@@ -30,7 +52,11 @@ const RelatorioLayout = props => {
           col-12
         </Col>
         <Col span={18} className={styles["gutter-col"]}>
-          <DeateEquipe disabled={props.disabled} equipes={props.equipes} />
+          <DeateEquipe
+            disabled={props.disabled}
+            equipes={props.equipes}
+            onSelectEquipes={props.onSelectEquipes}
+          />
         </Col>
       </Row>
       <AntButton text={"Gerar"} />
