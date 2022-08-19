@@ -36,10 +36,10 @@ const RelatorioLayout = props => {
         gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}
         className={styles["gutter-row"]}
       >
-        <Col span={5} className={styles["deate-container"]}>
+        <Col span={5} push={1} className={styles["deate-container"]}>
           <Deate unidades={props.unidades} />
         </Col>
-        <Col span={19} className={styles["gutter-col"]}>
+        <Col span={19} push={1} className={styles["gutter-col"]}>
           <DeateEquipe
             optionBar={getOptionBar(props.optionBarType)}
             disabled={props.disabled}
