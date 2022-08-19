@@ -10,18 +10,18 @@ const DeateEquipe = props => {
   const [indeterminate, setIndeterminate] = useState(true);
   const [checkAll, setCheckAll] = useState(false);
 
-  const onChange = list => {
+  const onChange = (list) => {
     setCheckedList(list);
     setIndeterminate(!!list.length && list.length < equipes.length);
     setCheckAll(list.length === equipes.length);
+    props.onSelectEquipes(list);
   };
 
-  const onCheckAllChange = e => {
+  const onCheckAllChange = (e) => {
     setCheckedList(e.target.checked ? equipes : []);
     setIndeterminate(false);
     setCheckAll(e.target.checked);
-
-    console.log(checkedList);
+    props.onSelectEquipes(e.target.checked ? equipes : []);
   };
   return (
     <Space direction={`vertical`}>
