@@ -4,6 +4,7 @@ import AntButton from "../components/UI/AntButton";
 import OptionBar from "./OptionBar";
 import DeateEquipe from "./DeateEquipe";
 import styles from "./RelatorioLayout.module.css";
+import Deate from "./Deate";
 
 const RelatorioLayout = props => {
 
@@ -49,7 +50,9 @@ const RelatorioLayout = props => {
         className={styles["gutter-row"]}
       >
         <Col span={6} className={styles["gutter-col"]}>
-          col-12
+          <Deate
+            unidades={props.unidades}
+          />
         </Col>
         <Col span={18} className={styles["gutter-col"]}>
           <DeateEquipe
