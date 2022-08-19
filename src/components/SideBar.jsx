@@ -1,6 +1,7 @@
 import classes from "./SideBar.module.css";
 import {Divider, Drawer} from 'antd';
-import { CloseCircleOutlined } from '@ant-design/icons';
+import {CloseCircleOutlined} from '@ant-design/icons';
+import logoRfb from '../assets/logoRfb.png';
 
 const SideBar = props => {
 
@@ -22,7 +23,12 @@ const SideBar = props => {
             color: 'var(--header-text-clr)',
             fontWeight: '700'
           }}>
-            Relatórios - DEATE
+            <span>
+              <span>
+                Relatórios - DEATE
+              </span>
+              <img className={classes.logo} src={logoRfb} alt="logo RFB"/>
+            </span>
           </p>
         )}
         headerStyle={{

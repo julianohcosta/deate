@@ -12,3 +12,11 @@
     font-weight: 500;
     cursor: pointer;
 }
+
+.logo {
+    max-height: 1.5em;
+    height: auto;
+    float: right;
+    border: 0;
+    vertical-align: middle;
+}
