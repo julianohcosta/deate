@@ -5,6 +5,7 @@
   height: 80vh;
   border: 2px solid #7f8fad;
   border-radius: 4px;
+  box-shadow: 0 0 18px rgb(67, 69, 71, 0.25);
 }
 
 .header-bar {
