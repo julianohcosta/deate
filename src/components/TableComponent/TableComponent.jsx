@@ -89,7 +89,7 @@ const TableComponent = props => {
           </button>
         </div>
       </div>
-      <table {...getTableProps()}>
+      <table {...getTableProps()} className={classes['table-resultado']}>
         <thead>
           {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()}>

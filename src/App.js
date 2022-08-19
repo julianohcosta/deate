@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import SideBar from "./components/SideBar";
 import Main from "./pages/Main";
 import EstoqueMensal from "./pages/EstoqueMensal";
@@ -12,7 +12,7 @@ function App() {
   const [selectedMenu, setSelectedMenu] = useState();
   const [authenticated, setAuthenticated] = useState(false);
 
-  const {isLoading, error, sendRequest, controller} = useHttp({
+  const { isLoading, error, sendRequest } = useHttp({
     url: 'https://localhost:8443/ctx/run/DEATE%20-%20relatorios%20gerenciais%20-%20backend/autenticarEprocesso'
     }, response => {
     if (response.status) {
@@ -22,9 +22,6 @@ function App() {
 
   useEffect(() => {
     sendRequest();
-    return () => {
-      controller.abort();
-    };
   }, []);
 
   const sideBarHandle = () => {
@@ -46,7 +43,7 @@ function App() {
   };
 
   return (
-    <React.StrictMode>
+    <>
       <div className={classes.container}>
         <SideBar
           onSideBarClose={sideBarHandle}
@@ -55,7 +52,7 @@ function App() {
         />
         <Main onSideBarClick={sideBarHandle}>{selectedMenu}</Main>
       </div>
-    </React.StrictMode>
+    </>
   );
 }
 

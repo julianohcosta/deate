@@ -36,11 +36,11 @@ const RelatorioLayout = props => {
       const url =
         "https://localhost:8443/ctx/run/DEATE - relatorios gerenciais - backend/relatorioEstoque" +
         "?nomeDeate=" +
-        equipe.deateName +
+        equipe['deateName'] +
         "&nomeEquipe=" +
-        equipe.equipeName +
+        equipe['equipeName'] +
         "&codigoEquipe=" +
-        equipe.equipeCodigo +
+        equipe['equipeCodigo'] +
         "&periodoInicial=" +
         periodoInicial +
         "&periodoFinal=" +
@@ -48,7 +48,7 @@ const RelatorioLayout = props => {
 
       console.log(url);
       console.log(
-        `Consultando a equipe ${equipe.equipeName} da deate ${equipe.deateName}`
+        `Consultando a equipe ${equipe['equipeName']} da deate ${equipe['deateName']}`
       );
       fetch(url)
         .then(response => response.json())
@@ -114,7 +114,10 @@ const RelatorioLayout = props => {
       <Divider orientation="center">Opções de Consulta</Divider>
       <Row align={"bottom"} gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
         <Col span={5} push={1} className={styles["deate-container"]}>
-          <Deate unidades={props.unidades} />
+          <Deate
+            unidades={props.unidades}
+            onSelectDeate={props.onSelectDeate}
+          />
         </Col>
         <Col span={19} push={1}>
           <DeateEquipe

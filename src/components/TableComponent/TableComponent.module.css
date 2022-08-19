@@ -8,31 +8,31 @@
   box-shadow: 0 0 18px rgba(32, 26, 26, 0.2);
 } */
 
-table {
+.table-resultado {
   font-family: Nunito, sans-serif;
   border-collapse: collapse;
   overflow: auto;
 }
 
-table td,
-table th {
+.table-resultado td,
+.table-resultado th {
   border: 1px solid #ddd;
   padding: 1em;
 }
 
-table tr {
+.table-resultado tr {
   font-size: 0.5em;
 }
 
-table tr:nth-child(even) {
+.table-resultado tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-table tr:hover {
+.table-resultado tr:hover {
   background-color: #ddd;
 }
 
-table th {
+.table-resultado th {
   font-size: 1em;
   padding-top: 0.4em;
   padding-bottom: 0.4rem;
