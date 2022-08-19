@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Col, Divider, Row } from "antd";
 import Button from "../components/UI/Button";
-import Modal from "../components/UI/Modal";
+import Modal from "./UI/Modal";
 import TableComponent from "./TableComponent/TableComponent";
 import LoadingTableScreen from "./TableComponent/LoadingTableScreen";
 import OptionBar from "./OptionBar";
@@ -98,6 +98,14 @@ const RelatorioLayout = props => {
     }
   };
 
+  if (showResultTable) {
+    return (
+      <Modal>
+        <TableComponent />
+      </Modal>
+    );
+  }
+
   return (
     <>
       {isConsultando && (
@@ -118,15 +126,10 @@ const RelatorioLayout = props => {
         </Col>
       </Row>
       <Button
-        onClick={gerarTableHandler}
+        onClick={() => setShowResultTable(true)}
         text={"Gerar"}
         className={styles["btn-gerar"]}
       />
-      {showResultTable && (
-        <Modal>
-          <TableComponent listaResultado={listaResultado} />
-        </Modal>
-      )}
     </>
   );
 };
