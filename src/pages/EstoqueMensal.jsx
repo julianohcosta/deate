@@ -78,6 +78,17 @@ const EstoqueMensal = () => {
       }).then() // 'then' para a IDE não apresentar erro.
       return
     }
+
+    if (selectedEquipes.length === 0) {
+      message.error({
+        content: 'Selecione ao menos uma equipe',
+        style: {
+          fontSize: '.575rem',
+          fontWeight: '500'
+        }
+      }).then() // 'then' para a IDE não apresentar erro.
+    }
+
     setTotalEquipes(selectedEquipes.length);
     setIsConsultando(true);
 
