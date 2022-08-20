@@ -53,7 +53,6 @@ const RelatorioLayout = props => {
         </Col>
       </Row>
       <Button
-        // onClick={() => setShowResultTable(true)}
         onClick={props.onGerarRelatorio}
         text={"Gerar"}
         className={styles["btn-gerar"]}

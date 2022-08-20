@@ -3,6 +3,7 @@ import RelatorioLayout from "../components/RelatorioLayout";
 import useHttp from "../hooks/useHttp";
 import TableComponent from "../components/TableComponent/TableComponent";
 import LoadingTableScreen from "../components/TableComponent/LoadingTableScreen";
+import {message} from 'antd';
 
 const EstoqueMensal = () => {
 
@@ -19,23 +20,23 @@ const EstoqueMensal = () => {
   const [listaResultado, setListaResultado] = useState([]);
   const [showResultTable, setShowResultTable] = useState(false);
 
+  message.config({maxCount: 3});
 
-  const {sendRequest, controller} = useHttp({
-    url: 'https://localhost:8443/ctx/run/DEATE%20-%20relatorios%20gerenciais%20-%20backend/deates'
+
+  const {sendRequest} = useHttp({
+      url: 'https://localhost:8443/ctx/run/DEATE%20-%20relatorios%20gerenciais%20-%20backend/deates'
     }, response => {
-    if (response['deates']) {
-      setUnidades(response['deates']);
-      setLoaded(true);
-    }else {
-      // TODO: Avisar o usuário que a requisição falhou
-    }}
+      if (response['deates']) {
+        setUnidades(response['deates']);
+        setLoaded(true);
+      } else {
+        // TODO: Avisar o usuário que a requisição falhou
+      }
+    }
   );
 
   useEffect(() => {
     sendRequest();
-    return () => {
-      // controller.abort()
-    };
   }, []);
 
   const selectDeateHandler = (deate) => {
@@ -67,6 +68,14 @@ const EstoqueMensal = () => {
 
     /** Data inicial e final são obrigatórias */
     if (!periodo.inicial || !periodo.final) {
+
+      message.error({
+        content: 'Informe o período a ser consultado!',
+        style: {
+          fontSize: '.575rem',
+          fontWeight: '500'
+        }
+      }).then() // 'then' para a IDE não apresentar erro.
       return
     }
     setTotalEquipes(selectedEquipes.length);
@@ -101,8 +110,6 @@ const EstoqueMensal = () => {
 
   useEffect(() => {
 
-    console.log(`count ${count} totalEquipes ${totalEquipes}`);
-
     if (count === totalEquipes) {
       setIsConsultando(false);
       if (totalEquipes >= 1 && count >= 1) {
@@ -113,12 +120,6 @@ const EstoqueMensal = () => {
     }
   }, [count, totalEquipes]);
 
-  // if (showResultTable) {
-  //   return <TableComponent
-  //     listaResultado={listaResultado}
-  //     onClose={valor => setShowResultTable(valor)} />;
-  // }
-
   // TODO: Ajustar tela de loading.
 
   return (
@@ -126,15 +127,15 @@ const EstoqueMensal = () => {
       {isConsultando && (
         <LoadingTableScreen
           totalEquipes={totalEquipes}
-          count={count} />
+          count={count}/>
       )}
       {showResultTable &&
-        <TableComponent
-          listaResultado={listaResultado}
-          onClose={valor => {
-            setShowResultTable(valor)
-            setLoaded(true);
-          }} />
+      <TableComponent
+        listaResultado={listaResultado}
+        onClose={valor => {
+          setShowResultTable(valor)
+          setLoaded(true);
+        }}/>
       }
       {loaded && <RelatorioLayout
         disabled={disabled}
