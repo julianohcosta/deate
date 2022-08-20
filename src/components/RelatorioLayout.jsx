@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Col, Divider, Row } from "antd";
+import React from "react";
+import {Col, Divider, Row} from "antd";
 import Button from "../components/UI/Button";
-import Modal from "./UI/Modal";
-import TableComponent from "./TableComponent/TableComponent";
-import LoadingTableScreen from "./TableComponent/LoadingTableScreen";
 import OptionBar from "./OptionBar";
 import DeateEquipe from "./DeateEquipe";
-import styles from "./RelatorioLayout.module.css";
 import Deate from "./Deate";
+import styles from "./RelatorioLayout.module.css";
 
 const RelatorioLayout = props => {
 
@@ -39,7 +36,7 @@ const RelatorioLayout = props => {
   return (
     <>
       <Divider orientation="center">Opções de Consulta</Divider>
-      <Row align={"bottom"} gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+      <Row align={"bottom"} gutter={{xs: 8, sm: 16, md: 24, lg: 32}}>
         <Col span={5} push={1} className={styles["deate-container"]}>
           <Deate
             unidades={props.unidades}
