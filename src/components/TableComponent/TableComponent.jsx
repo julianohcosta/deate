@@ -1,22 +1,13 @@
 import React, { useMemo, useState } from "react";
+import {useTable, useSortBy, useGlobalFilter, usePagination,} from "react-table";
+import {AiOutlineSortAscending, AiOutlineSortDescending,} from "react-icons/ai";
 import { GrDocumentCsv } from "react-icons/gr";
 import { SiMicrosoftexcel } from "react-icons/si";
 import { MdClose } from "react-icons/md";
 import * as XLSX from "xlsx";
-import {
-  useTable,
-  useSortBy,
-  useGlobalFilter,
-  usePagination,
-} from "react-table";
-
-import {
-  AiOutlineSortAscending,
-  AiOutlineSortDescending,
-} from "react-icons/ai";
 import { CSVLink } from "react-csv";
-import GlobalFilterComponent from "./GlobalFilterComponent";
 import classes from "./TableComponent.module.css";
+import GlobalFilterComponent from "./GlobalFilterComponent";
 import { GROUPED_COLUMNS } from "./columns";
 import DUMMY_DATA from "./DUMMY_DATA.json";
 
@@ -24,8 +15,8 @@ const TableComponent = props => {
   const [hiddenTable, setHiddenTable] = useState(false);
   const columns = useMemo(() => GROUPED_COLUMNS, []);
 
-  const data = useMemo(() => DUMMY_DATA, []);
-  // const data = useMemo(() => props.listaResultado, [props.listaResultado]);
+  // const data = useMemo(() => DUMMY_DATA, []);
+  const data = useMemo(() => props.listaResultado, [props.listaResultado]);
 
   const {
     getTableProps,

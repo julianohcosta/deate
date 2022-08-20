@@ -3,35 +3,31 @@ import { MenuOutlined } from "@ant-design/icons";
 import { Col, Row } from "antd";
 import { useEffect, useState } from "react";
 import userLogo from "../assets/logoLabin.png";
+import useHttp from "../hooks/useHttp";
 
 const Header = props => {
   const [username, setusername] = useState("");
 
+  const { sendRequest} = useHttp({
+    url: 'https://localhost:8443/ctx/run/DEATE - relatorios gerenciais - backend/usuarioLogado'
+    }, user => {
+    if (user.username) {
+      setusername(user.username);
+    }
+  });
+
   useEffect(() => {
-    fetch("https://localhost:8443/ctx/run/DEATE - relatorios gerenciais - backend/usuarioLogado")
-      .then(response => response.json())
-      .then(user => {
-        if (user.username) {
-          setusername(user.username);
-        }
-      })
-      .catch(e => {
-        console.log(e);
-      });
-  }, [username]);
+    sendRequest();
+  }, []);
 
   return (
     <Row className={classes["main-header"]} align={"middle"}>
       <Col
         span={2}
-        style={{
-          marginRight: "-1.5em",
-        }}
-      >
+        style={{marginRight: "-1.5em",}}>
         <MenuOutlined
           className={classes["hamburguer-menu"]}
-          onClick={props.onClick}
-        />
+          onClick={props.onClick}/>
       </Col>
       <Col span={6}>
         <span className={classes["header-text"]}>Gerencial DEATE</span>
