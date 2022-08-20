@@ -1,11 +1,23 @@
-import { DatePicker, Select, Space } from "antd";
-import { useState } from "react";
+import {useState} from "react";
+import {DatePicker, Select, Space} from "antd";
 import "moment/locale/zh-cn";
 import locale from "antd/es/date-picker/locale/pt_BR";
 import "./OptionBar.module.css";
 
-const { Option } = Select;
-const { RangePicker } = DatePicker;
+const {Option} = Select;
+const {RangePicker} = DatePicker;
+
+const meses = ['Janeiro', 'Fevereiro',
+  'Março', 'Abril',
+  'Maio', 'junho',
+  'Julho', 'Agosto',
+  'Setembro', 'Outubro',
+  'Novembro', 'Dezembro']
+
+const anos = [];
+for (let i = 2018; i<=new Date().getFullYear(); i++){
+  anos.push(i);
+}
 
 const OptionBar = props => {
   const disabled = props.disabled && true;
@@ -23,7 +35,7 @@ const OptionBar = props => {
   }
 
   const rangeHandler = (dates) => {
-    if (dates && dates.length > 0){
+    if (dates && dates.length > 0) {
       props.onSelectedPeriod(dates)
     }
   }
@@ -45,21 +57,13 @@ const OptionBar = props => {
             onChange={handleChange}
             disabled={disabled}
           >
-            <Option value="2018" label="2018">
-              <div className="ano-item">2018</div>
-            </Option>
-            <Option value="2019" label="2019">
-              <div className="ano-item">2019</div>
-            </Option>
-            <Option value="2020" label="2020">
-              <div className="ano-item">2020</div>
-            </Option>
-            <Option value="2021" label="2021">
-              <div className="ano-item">2021</div>
-            </Option>
-            <Option value="2022" label="2022">
-              <div className="ano-item">2022</div>
-            </Option>
+            {anos.map(ano => {
+              return (
+                <Option value={ano} label={ano}>
+                  <div className="ano-item">{ano}</div>
+                </Option>
+              )
+            })}
           </Select>
           <span
             style={{
@@ -79,24 +83,17 @@ const OptionBar = props => {
             onChange={handleMonthChange}
           >
             <Option value="">Todos</Option>
-            <Option value="1">Janeiro</Option>
-            <Option value="2">Fevereiro</Option>
-            <Option value="3">Março</Option>
-            <Option value="4">Abril</Option>
-            <Option value="5">Maio</Option>
-            <Option value="6">Junho</Option>
-            <Option value="7">Julho</Option>
-            <Option value="8">Agosto</Option>
-            <Option value="9">Setembro</Option>
-            <Option value="10">Outubro</Option>
-            <Option value="11">Novembro</Option>
-            <Option value="12">Dezembro</Option>
+            {meses.map((mes, idx) => {
+              return (
+                <Option value={idx}>{mes}</Option>
+              )
+            })}}
           </Select>
         </Space>
       )}
       {props.type === "estoque" && (
         <RangePicker
-          style={{ border: "0.8px solid #adb5bd" }}
+          style={{border: "0.8px solid #adb5bd"}}
           locale={locale}
           format={dateFormat}
           onChange={rangeHandler}

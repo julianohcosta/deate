@@ -24,7 +24,7 @@ const EstoqueMensal = () => {
 
 
   const {sendRequest} = useHttp({
-      url: 'https://localhost:8443/ctx/run/DEATE%20-%20relatorios%20gerenciais%20-%20backend/deates'
+      url: 'https://localhost:8443/ctx/run/DEATE%20-%20relatorios%20gerenciais/deates'
     }, response => {
       if (response['deates']) {
         setUnidades(response['deates']);
@@ -41,7 +41,7 @@ const EstoqueMensal = () => {
 
   const selectDeateHandler = (deate) => {
 
-    const url = `https://localhost:8443/ctx/run/DEATE%20-%20relatorios%20gerenciais%20-%20backend/equipesDeate?codigoDeate=${deate['codigo']}`
+    const url = `https://localhost:8443/ctx/run/DEATE%20-%20relatorios%20gerenciais/equipesDeate?codigoDeate=${deate['codigo']}`
     fetch(url).then(res => res.json()).then(resposta => {
       if (resposta.equipes) {
         setEquipes(resposta.equipes);
@@ -86,7 +86,7 @@ const EstoqueMensal = () => {
       const equipe = equipes.find(e => e.nome === equipeNome);
 
       const url =
-        "https://localhost:8443/ctx/run/DEATE%20-%20relatorios%20gerenciais%20-%20backend/relatorioEstoque" +
+        "https://localhost:8443/ctx/run/DEATE%20-%20relatorios%20gerenciais/relatorioEstoque" +
         "?nomeDeate=" + selectedDeate.nome +
         "&nomeEquipe=" + equipe.nome +
         "&codigoEquipe=" + equipe.codigo +

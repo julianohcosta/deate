@@ -8,7 +8,7 @@ const Header = props => {
   const [username, setusername] = useState("");
 
   const {sendRequest} = useHttp({
-    url: 'https://localhost:8443/ctx/run/DEATE - relatorios gerenciais - backend/usuarioLogado'
+    url: 'https://localhost:8443/ctx/run/DEATE - relatorios gerenciais/usuarioLogado'
   }, user => {
     if (user.username) {
       setusername(user.username);

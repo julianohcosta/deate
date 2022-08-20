@@ -13,7 +13,7 @@ function App() {
   const [authenticated, setAuthenticated] = useState(false);
 
   const { isLoading, error, sendRequest } = useHttp({
-    url: 'https://localhost:8443/ctx/run/DEATE%20-%20relatorios%20gerenciais%20-%20backend/autenticarEprocesso'
+    url: 'https://localhost:8443/ctx/run/DEATE%20-%20relatorios%20gerenciais/autenticarEprocesso'
     }, response => {
     if (response.status) {
       setAuthenticated(true);

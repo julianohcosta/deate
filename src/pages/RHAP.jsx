@@ -13,7 +13,7 @@ const RHAP = () => {
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
-    fetch('https://localhost:8443/ctx/run/DEATE%20-%20relatorios%20gerenciais%20-%20backend/deatesAPI', {signal})
+    fetch('https://localhost:8443/ctx/run/DEATE%20-%20relatorios%20gerenciais/deatesAPI', {signal})
       .then(res => res.json())
       .then(resposta => {
         if (resposta['deates']){
