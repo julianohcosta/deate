@@ -2,7 +2,6 @@ import classes from "./LoadingTableScreen.module.css";
 
 import Modal from "../UI/Modal";
 import Card from "../UI/Card";
-import logoLabin from "../../assets/logoLabin.png";
 
 const ProgressBar = props => {
   const percentNow = Math.trunc((props.currentCount / props.numEquipes) * 100);
@@ -23,7 +22,7 @@ const CreatingTableScreen = ({ totalEquipes, count }) => {
   return (
     <Modal classNameOverlay={classes["creating-table-screen-container"]}>
       <Card className={classes["creating-table-screen--header"]}>
-        <img src={logoLabin} alt="logo Labin01" />
+        <img src={`https://i.ibb.co/2yfQ1x6/logo-Labin.png`} alt="logo Labin01" />
         <div className={classes["creating-table-screen--header--text"]}>
           <p>
             Gerando os relatórios de estoque para <span>{totalEquipes}</span>{" "}

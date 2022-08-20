@@ -1,16 +1,15 @@
 import classes from "./Header.module.css";
-import { MenuOutlined } from "@ant-design/icons";
-import { Col, Row } from "antd";
-import { useEffect, useState } from "react";
-import userLogo from "../assets/logoLabin.png";
+import {MenuOutlined} from "@ant-design/icons";
+import {Col, Row} from "antd";
+import {useEffect, useState} from "react";
 import useHttp from "../hooks/useHttp";
 
 const Header = props => {
   const [username, setusername] = useState("");
 
-  const { sendRequest} = useHttp({
+  const {sendRequest} = useHttp({
     url: 'https://localhost:8443/ctx/run/DEATE - relatorios gerenciais - backend/usuarioLogado'
-    }, user => {
+  }, user => {
     if (user.username) {
       setusername(user.username);
     }
@@ -32,7 +31,7 @@ const Header = props => {
       <Col span={6}>
         <span className={classes["header-text"]}>Gerencial DEATE</span>
       </Col>
-      <Col span={8} />
+      <Col span={8}/>
       <Col span={5} align="right">
         <p className={classes.username}>{username}</p>
       </Col>
@@ -40,7 +39,7 @@ const Header = props => {
         <div className={classes["logo-container"]}>
           <img
             className={classes.logolabin}
-            src={userLogo}
+            src={`https://i.ibb.co/2yfQ1x6/logo-Labin.png`}
             alt="Awesome Labin01 logo"
           />
         </div>
