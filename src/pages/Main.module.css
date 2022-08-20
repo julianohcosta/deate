@@ -6,7 +6,8 @@
   border: 2px solid #7f8fad;
   border-radius: 4px;
   box-shadow: 0 0 18px rgb(67, 69, 71, 0.25);
-  /* overflow: auto; */
+  background: white
+    url(https://www1.suiterfb.receita.fazenda/camweb/pages/www1/login/imagens/fundo.jpg);
 }
 
 .header-bar {

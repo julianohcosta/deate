@@ -36,11 +36,11 @@ const RelatorioLayout = props => {
       const url =
         "https://localhost:8443/ctx/run/DEATE - relatorios gerenciais - backend/relatorioEstoque" +
         "?nomeDeate=" +
-        equipe['deateName'] +
+        equipe["deateName"] +
         "&nomeEquipe=" +
-        equipe['equipeName'] +
+        equipe["equipeName"] +
         "&codigoEquipe=" +
-        equipe['equipeCodigo'] +
+        equipe["equipeCodigo"] +
         "&periodoInicial=" +
         periodoInicial +
         "&periodoFinal=" +
@@ -48,7 +48,7 @@ const RelatorioLayout = props => {
 
       console.log(url);
       console.log(
-        `Consultando a equipe ${equipe['equipeName']} da deate ${equipe['deateName']}`
+        `Consultando a equipe ${equipe["equipeName"]} da deate ${equipe["deateName"]}`
       );
       fetch(url)
         .then(response => response.json())
@@ -99,11 +99,7 @@ const RelatorioLayout = props => {
   };
 
   if (showResultTable) {
-    return (
-      <Modal>
-        <TableComponent />
-      </Modal>
-    );
+    return <TableComponent onClose={valor => setShowResultTable(valor)} />;
   }
 
   return (

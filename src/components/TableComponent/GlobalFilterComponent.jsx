@@ -1,9 +1,11 @@
 import React from "react";
+// import { FiSearch } from "react-icons/fi";
 
 const GlobalFilterComponent = ({ filter, setFilter }) => {
   return (
     <>
-      Pesquisar:{" "}
+      {/* <FiSearch /> */}
+      <span>Pesquisar:</span>
       <input
         value={filter || ""}
         onChange={e => {

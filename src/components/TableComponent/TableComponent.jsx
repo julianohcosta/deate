@@ -1,4 +1,7 @@
 import React, { useMemo, useState } from "react";
+import { GrDocumentCsv } from "react-icons/gr";
+import { SiMicrosoftexcel } from "react-icons/si";
+import { MdClose } from "react-icons/md";
 import * as XLSX from "xlsx";
 import {
   useTable,
@@ -70,26 +73,30 @@ const TableComponent = props => {
           />
         </div>
         <div className={classes["container-export"]}>
-          <button>
+          <button className={classes["btn-export--csv"]}>
             <CSVLink
-              className={classes["bnt-export--csv"]}
               data={data}
               target="_blank"
               filename={"Relatório_Deates.csv"}
             >
-              CSV
+              <GrDocumentCsv />
             </CSVLink>
           </button>
 
-          <button onClick={excelExportHandle}>Excel</button>
-        </div>
-        <div className={classes["container-close"]}>
-          <button onClick={closeHandler}>
-            <span>Close</span>
+          <button
+            className={classes["btn-export--excel"]}
+            onClick={excelExportHandle}
+          >
+            <SiMicrosoftexcel />
           </button>
         </div>
+        {/** Botao Fechar Tabela*/}
+        <MdClose
+          className={classes["btn-export--close"]}
+          onClick={closeHandler}
+        />
       </div>
-      <table {...getTableProps()} className={classes['table-resultado']}>
+      <table {...getTableProps()} className={classes["table-resultado"]}>
         <thead>
           {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()}>

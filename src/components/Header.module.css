@@ -17,26 +17,24 @@
 
 .hamburguer-menu {
   font-size: 1rem;
-  padding: 0 1em 0 1em;
+  margin: auto 1em;
 }
 
 .username {
   position: absolute;
-  top: -1em;
-  right: 0;
   font-size: 0.6rem;
   font-weight: 700;
   letter-spacing: 0.09em;
-  animation: slideUser 1s;
+  animation: slideUser 1s 1s forwards;
 }
 
 @keyframes slideUser {
   from {
-    top: -1em;
+    top: -0.7em;
     right: -20em;
   }
   to {
-    top: -1em;
+    top: -0.7em;
     right: 0;
   }
 }
@@ -45,7 +43,4 @@
   padding: 0.4em 0.3em;
   width: 35%;
   height: 35%;
-  /* background-color: var(--secondary-text-color); */
-  /* border-radius: 50%; */
-  /* box-shadow: 0 0 8px rgba(241, 235, 235, 0.55); */
 }
