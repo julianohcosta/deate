@@ -19,6 +19,7 @@ const EstoqueMensal = () => {
   const [listaResultado, setListaResultado] = useState([]);
   const [showResultTable, setShowResultTable] = useState(false);
 
+  /** Max amount of messages on screen simultaneously */
   message.config({ maxCount: 3 });
 
   const { sendRequest } = useHttp(
@@ -90,6 +91,7 @@ const EstoqueMensal = () => {
           },
         })
         .then(); // 'then' para a IDE não apresentar erro.
+      return
     }
 
     setTotalEquipes(selectedEquipes.length);
@@ -100,16 +102,11 @@ const EstoqueMensal = () => {
 
       const url =
         "https://localhost:8443/ctx/run/DEATE - relatorios gerenciais/relatorioEstoque" +
-        "?nomeDeate=" +
-        selectedDeate.nome +
-        "&nomeEquipe=" +
-        equipe.nome +
-        "&codigoEquipe=" +
-        equipe.codigo +
-        "&periodoInicial=" +
-        periodo.inicial +
-        "&periodoFinal=" +
-        periodo.final;
+        "?nomeDeate=" + selectedDeate.nome +
+        "&nomeEquipe=" + equipe.nome +
+        "&codigoEquipe=" + equipe.codigo +
+        "&periodoInicial=" + periodo.inicial +
+        "&periodoFinal=" + periodo.final;
 
       console.log(url);
 
@@ -138,8 +135,6 @@ const EstoqueMensal = () => {
       }
     }
   }, [count, totalEquipes]);
-
-  // TODO: Ajustar tela de loading.
 
   return (
     <>
