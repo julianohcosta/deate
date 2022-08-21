@@ -7,14 +7,16 @@ const ProgressBar = props => {
   const percentNow = Math.trunc((props.currentCount / props.numEquipes) * 100);
 
   return (
-    <div className={classes["progress-bar--container"]}>
+    <>
       <div
         className={classes["progress-bar--bar"]}
         style={{ width: `${percentNow}%` }}
       >
-        <p className={classes["progress-bar--percent"]}>{percentNow}%</p>
+        <p className={classes["progress-bar--percent"]}>
+          {percentNow === 0 ? 0 : percentNow}%
+        </p>
       </div>
-    </div>
+    </>
   );
 };
 
@@ -22,7 +24,10 @@ const CreatingTableScreen = ({ totalEquipes, count }) => {
   return (
     <Modal classNameOverlay={classes["creating-table-screen-container"]}>
       <Card className={classes["creating-table-screen--header"]}>
-        <img src={`https://i.ibb.co/2yfQ1x6/logo-Labin.png`} alt="logo Labin01" />
+        <img
+          src={`https://i.ibb.co/2yfQ1x6/logo-Labin.png`}
+          alt="logo Labin01"
+        />
         <div className={classes["creating-table-screen--header--text"]}>
           <p>
             Gerando os relatórios de estoque para <span>{totalEquipes}</span>{" "}
@@ -34,9 +39,7 @@ const CreatingTableScreen = ({ totalEquipes, count }) => {
           </p>
         </div>
       </Card>
-      <Card>
-        {<ProgressBar numEquipes={totalEquipes} currentCount={count} />}
-      </Card>
+      <ProgressBar numEquipes={totalEquipes} currentCount={count} />
     </Modal>
   );
 };

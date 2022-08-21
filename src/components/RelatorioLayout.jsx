@@ -1,5 +1,5 @@
 import React from "react";
-import {Col, Divider, Row} from "antd";
+import { Col, Divider, Row } from "antd";
 import Button from "../components/UI/Button";
 import OptionBar from "./OptionBar";
 import DeateEquipe from "./DeateEquipe";
@@ -7,7 +7,6 @@ import Deate from "./Deate";
 import styles from "./RelatorioLayout.module.css";
 
 const RelatorioLayout = props => {
-
   const getOptionBar = optionBarType => {
     switch (optionBarType) {
       case "rhap":
@@ -32,18 +31,17 @@ const RelatorioLayout = props => {
     }
   };
 
-
   return (
     <>
       <Divider orientation="center">Opções de Consulta</Divider>
-      <Row align={"bottom"} gutter={{xs: 8, sm: 16, md: 24, lg: 32}}>
-        <Col span={5} push={1} className={styles["deate-container"]}>
+      <Row align={"bottom"} gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+        <Col span={5} push={0} className={styles["deate-container"]}>
           <Deate
             unidades={props.unidades}
             onSelectDeate={props.onSelectDeate}
           />
         </Col>
-        <Col span={19} push={1}>
+        <Col span={19} push={0}>
           <DeateEquipe
             optionBar={getOptionBar(props.optionBarType)}
             disabled={props.disabled}

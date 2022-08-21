@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import SideBar from "./components/SideBar";
 import Main from "./pages/Main";
 import EstoqueMensal from "./pages/EstoqueMensal";
@@ -12,13 +12,16 @@ function App() {
   const [selectedMenu, setSelectedMenu] = useState();
   const [authenticated, setAuthenticated] = useState(false);
 
-  const { isLoading, error, sendRequest } = useHttp({
-    url: 'https://localhost:8443/ctx/run/DEATE%20-%20relatorios%20gerenciais/autenticarEprocesso'
-    }, response => {
-    if (response.status) {
-      setAuthenticated(true);
+  const { isLoading, error, sendRequest } = useHttp(
+    {
+      url: "https://localhost:8443/ctx/run/DEATE%20-%20relatorios%20gerenciais/autenticarEprocesso",
+    },
+    response => {
+      if (response.status) {
+        setAuthenticated(true);
+      }
     }
-  });
+  );
 
   useEffect(() => {
     sendRequest();
@@ -31,10 +34,10 @@ function App() {
   const selectMenuHandler = menuName => {
     switch (menuName) {
       case "estoque":
-        setSelectedMenu(<EstoqueMensal/>);
+        setSelectedMenu(<EstoqueMensal />);
         break;
       case "rhap":
-        setSelectedMenu(<RHAP/>);
+        setSelectedMenu(<RHAP />);
         break;
       default:
         break;

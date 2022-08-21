@@ -1,19 +1,22 @@
 import classes from "./Header.module.css";
-import {MenuOutlined} from "@ant-design/icons";
-import {Col, Row} from "antd";
-import {useEffect, useState} from "react";
+import { MenuOutlined } from "@ant-design/icons";
+import { Col, Row } from "antd";
+import { useEffect, useState } from "react";
 import useHttp from "../hooks/useHttp";
 
 const Header = props => {
   const [username, setusername] = useState("");
 
-  const {sendRequest} = useHttp({
-    url: 'https://localhost:8443/ctx/run/DEATE - relatorios gerenciais/usuarioLogado'
-  }, user => {
-    if (user.username) {
-      setusername(user.username);
+  const { sendRequest } = useHttp(
+    {
+      url: "https://localhost:8443/ctx/run/DEATE - relatorios gerenciais/usuarioLogado",
+    },
+    user => {
+      if (user.username) {
+        setusername(user.username);
+      }
     }
-  });
+  );
 
   useEffect(() => {
     sendRequest();
@@ -21,17 +24,16 @@ const Header = props => {
 
   return (
     <Row className={classes["main-header"]} align={"middle"}>
-      <Col
-        span={2}
-        style={{marginRight: "-1.5em",}}>
+      <Col span={2} style={{ marginRight: "-1.5em" }}>
         <MenuOutlined
           className={classes["hamburguer-menu"]}
-          onClick={props.onClick}/>
+          onClick={props.onClick}
+        />
       </Col>
       <Col span={6}>
         <span className={classes["header-text"]}>Gerencial DEATE</span>
       </Col>
-      <Col span={8}/>
+      <Col span={8} />
       <Col span={5} align="right">
         <p className={classes.username}>{username}</p>
       </Col>
