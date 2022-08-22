@@ -44,19 +44,31 @@ const SideBar = props => {
         }}/>}
       >
         <Divider style={dividerStyle}>Relatórios</Divider>
-        <p className={classes.sidebarItem} onClick={() => {
-          props.onSelectMenu('estoque');
-        }}>
-          Estoque Mensal
-        </p>
-        <p className={classes.sidebarItem} onClick={() => {
-          props.onSelectMenu('rhap');
-        }}>
-          RHAP
-        </p>
-        <p className={classes.sidebarItem} onClick={() => console.log("clicou")}>
-          Outro Relatório
-        </p>
+        <ul className={classes['link-container']}>
+          <li>
+            <span
+              className={classes.sidebarItem}
+              onClick={() => {
+                props.onSelectMenu('estoque');
+              }}>
+                 Estoque Mensal
+            </span>
+          </li>
+
+          <li>
+            <span className={classes.sidebarItem} onClick={() => {
+                props.onSelectMenu('rhap');
+              }}>
+              RHAP
+            </span>
+          </li>
+
+          <li>
+            <span className={classes.sidebarItem} onClick={() => console.log("clicou")}>
+              Outro Relatório
+            </span>
+          </li>
+        </ul>
         <Divider style={dividerStyle}>Resultado</Divider>
       </Drawer>
     </aside>

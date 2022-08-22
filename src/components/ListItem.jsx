@@ -3,17 +3,18 @@ import SelectedDeateContext from "../context/selected-deate-context";
 import classes from "./ListItem.module.css";
 
 const ListItem = props => {
+
   const ctx = useContext(SelectedDeateContext);
   const unidade = props.unidade;
   const codigoUnidade = unidade["codigo"];
-  const isUndSelected = ctx.codigo === codigoUnidade;
+  const isSelected = ctx.codigo === codigoUnidade;
 
   return (
     <li
       key={codigoUnidade}
       className={classes.unidade}
       style={
-        isUndSelected
+        isSelected
           ? {
               backgroundColor: "#003399",
               color: "#fff",

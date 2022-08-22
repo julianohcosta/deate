@@ -24,4 +24,5 @@ body {
 
 .ant-checkbox + span {
   font-size: 0.725rem;
+  color: #003399;
 }
