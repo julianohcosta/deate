@@ -78,7 +78,7 @@ const OptionBar = props => {
             onChange={handleMonthChange}
           >
             <Option value="">Todos</Option>
-            {meses.map((mes, idx) => {return (<Option value={idx}>{mes}</Option>)})}}
+            {meses.map((mes, idx) => {return (<Option key={idx} value={idx}>{mes}</Option>)})}}
           </Select>
         </Space>
       )}

@@ -88,7 +88,10 @@ const EstoqueMensal = () => {
           style: {
             fontSize: ".575rem",
             fontWeight: "500",
+            cursor: 'pointer'
           },
+          key: '001',
+          onClick: () => message.destroy('001')
         })
         .then(); // 'then' para a IDE não apresentar erro.
       return;
@@ -101,7 +104,10 @@ const EstoqueMensal = () => {
           style: {
             fontSize: ".575rem",
             fontWeight: "500",
+            cursor: 'pointer'
           },
+          key: '002',
+          onClick: () => message.destroy('002')
         })
         .then(); // 'then' para a IDE não apresentar erro.
       return;
@@ -114,7 +120,10 @@ const EstoqueMensal = () => {
           style: {
             fontSize: ".575rem",
             fontWeight: "500",
+            cursor: 'pointer'
           },
+          key: '003',
+          onClick: () => message.destroy('003')
         })
         .then(); // 'then' para a IDE não apresentar erro.
       return
