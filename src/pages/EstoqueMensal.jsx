@@ -61,8 +61,6 @@ const EstoqueMensal = () => {
   const periodoHandler = dates => {
 
     const dateDiff = dates[1].diff(dates[0], 'months', true) < 12;
-    console.log(dateDiff)
-    console.log(dates[1].diff(dates[0], 'months', true));
 
     if (!dateDiff) {
       setLess12Months(false);
