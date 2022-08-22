@@ -31,7 +31,7 @@
 }
 
 .container-list > label:nth-child(odd) {
-  background-color: #F2E9D8;
+  background-color: #f2e9d8;
 }
 
 .container-list > label:nth-child(even) {

@@ -24,5 +24,9 @@ body {
 
 .ant-checkbox + span {
   font-size: 0.725rem;
-  color: #003399;
+  color: #00205b;
+}
+
+.ant-checkbox + span:hover {
+  color: #fff;
 }

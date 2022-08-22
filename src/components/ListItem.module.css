@@ -6,11 +6,11 @@
   font-size: 0.825rem;
   border-right: 2px solid #7f8fad;
   border-left: 2px solid #7f8fad;
-  color: #003399;
+  color: #00205b;
 }
 
 .unidade:nth-child(odd) {
-  background-color: #F2E9D8;
+  background-color: #f2e9d8;
 }
 
 .unidade:nth-child(even) {
@@ -38,5 +38,5 @@
 }
 
 .unidade-selecionada {
-  background-color: #A2CA6D;
+  background-color: #a2ca6d;
 }
