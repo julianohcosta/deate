@@ -21,12 +21,3 @@ body {
   font-size: calc(0.5em + 1vw);
   color: var(--main-text-color);
 }
-
-.ant-checkbox + span {
-  font-size: 0.725rem;
-  color: #00205b;
-}
-
-.ant-checkbox + span:hover {
-  color: #fff;
-}
