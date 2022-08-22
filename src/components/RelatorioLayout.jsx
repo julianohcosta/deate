@@ -9,11 +9,6 @@ import styles from "./RelatorioLayout.module.css";
 
 const RelatorioLayout = props => {
   const [selectedDeate, setSelectedDeate] = useState({});
-  // const getPageTitle = pageType => {
-  //   if (pageType === "estoque") return "Estoque Mensal";
-  //   if (pageType === "rhap") return "RHAP";
-  //   return;
-  // };
 
   const getOptionBar = optionBarType => {
     switch (optionBarType) {

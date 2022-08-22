@@ -34,7 +34,7 @@
 
 .progress-bar--bar {
   position: relative;
-  margin: 2em 2em;
+  margin: 2em 0 0 0;
   min-width: 5%;
   height: 10%;
   border-radius: 2px;
