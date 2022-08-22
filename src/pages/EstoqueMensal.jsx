@@ -61,8 +61,6 @@ const EstoqueMensal = () => {
   const periodoHandler = dates => {
 
     const dateDiff = dates[1].diff(dates[0], 'months', true) < 12;
-    console.log(dateDiff)
-    console.log(dates[1].diff(dates[0], 'months', true));
 
     if (!dateDiff) {
       setLess12Months(false);
@@ -88,7 +86,10 @@ const EstoqueMensal = () => {
           style: {
             fontSize: ".575rem",
             fontWeight: "500",
+            cursor: 'pointer'
           },
+          key: '001',
+          onClick: () => message.destroy('001')
         })
         .then(); // 'then' para a IDE não apresentar erro.
       return;
@@ -101,7 +102,10 @@ const EstoqueMensal = () => {
           style: {
             fontSize: ".575rem",
             fontWeight: "500",
+            cursor: 'pointer'
           },
+          key: '002',
+          onClick: () => message.destroy('002')
         })
         .then(); // 'then' para a IDE não apresentar erro.
       return;
@@ -114,7 +118,10 @@ const EstoqueMensal = () => {
           style: {
             fontSize: ".575rem",
             fontWeight: "500",
+            cursor: 'pointer'
           },
+          key: '003',
+          onClick: () => message.destroy('003')
         })
         .then(); // 'then' para a IDE não apresentar erro.
       return
