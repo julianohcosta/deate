@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {DatePicker, Select, Space} from "antd";
+import moment from 'moment';
 import "moment/locale/zh-cn";
 import locale from "antd/es/date-picker/locale/pt_BR";
 import "./OptionBar.module.css";
@@ -39,6 +40,12 @@ const OptionBar = props => {
       props.onSelectedPeriod(dates)
     }
   }
+
+  const disabledDate = (current) => {
+    // Can not select days before today and today
+
+    return current && current > moment().endOf('day');
+  };
 
   return (
     <>
@@ -81,6 +88,7 @@ const OptionBar = props => {
           locale={locale}
           format={dateFormat}
           onChange={rangeHandler}
+          disabledDate={disabledDate}
         />
       )}
     </>
