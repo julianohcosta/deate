@@ -10,7 +10,8 @@
   flex-direction: column;
   overflow: auto;
   height: 31.8em;
-  width: 100%;
+  /* width: 100%; */
+  min-width: 70em;
 }
 
 .optionbar-container {

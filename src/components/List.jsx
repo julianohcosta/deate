@@ -1,15 +1,13 @@
 import ListItem from "./ListItem";
-import classes from "./List.module.css"
+import classes from "./List.module.css";
 
 const List = props => {
-
-
   return (
-    <ul className={classes['lista-deates']}>
-      {props.unidades?.map((unidade) => {
+    <ul className={classes["lista-deates"]}>
+      {props.unidades?.map(unidade => {
         return (
           <ListItem
-            key={unidade['codigo']}
+            key={unidade["codigo"]}
             unidade={unidade}
             onDeateClick={props.onDeateClick}
           />
@@ -18,4 +16,4 @@ const List = props => {
     </ul>
   );
 };
-export default List
+export default List;

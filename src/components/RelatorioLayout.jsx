@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import SelectedDeateContext from "../context/selected-deate-context";
 import { Col, Divider, Row } from "antd";
 import Button from "../components/UI/Button";
 import OptionBar from "./OptionBar";
@@ -7,6 +8,7 @@ import Deate from "./Deate";
 import styles from "./RelatorioLayout.module.css";
 
 const RelatorioLayout = props => {
+  const [selectedDeate, setSelectedDeate] = useState({});
   const getOptionBar = optionBarType => {
     switch (optionBarType) {
       case "rhap":
@@ -31,14 +33,19 @@ const RelatorioLayout = props => {
     }
   };
 
+  const selectedDeateHandler = deate => {
+    setSelectedDeate(deate);
+    props.onSelectDeate(deate);
+  };
+
   return (
-    <>
+    <SelectedDeateContext.Provider value={selectedDeate}>
       <Divider orientation="center">Opções de Consulta</Divider>
       <Row align={"bottom"} gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
         <Col span={5} push={0} className={styles["deate-container"]}>
           <Deate
             unidades={props.unidades}
-            onSelectDeate={props.onSelectDeate}
+            onSelectDeate={selectedDeateHandler}
           />
         </Col>
         <Col span={19} push={0}>
@@ -55,7 +62,7 @@ const RelatorioLayout = props => {
         text={"Gerar"}
         className={styles["btn-gerar"]}
       />
-    </>
+    </SelectedDeateContext.Provider>
   );
 };
 export default RelatorioLayout;
