@@ -176,10 +176,10 @@ const EstoqueMensal = () => {
 
   return (
     <>
-      {/* {isConsultando && (
+      {isConsultando && (
         <LoadingTableScreen totalEquipes={totalEquipes} count={count} />
-      )} */}
-      {true && <LoadingTableScreen totalEquipes={100} count={100} />}
+      )}
+
       {showResultTable && (
         <TableComponent
           listaResultado={listaResultado}
