@@ -5,12 +5,11 @@
   border-radius: 5px;
   border: 2px solid #7f8fad;
   display: flex !important;
-  gap: 0.2em;
   background-color: #e3e3e3;
   flex-direction: column;
   overflow: auto;
   height: 31.8em;
-  /* width: 100%; */
+
   min-width: 70em;
 }
 
@@ -24,6 +23,7 @@
 
 .container-list > label > span:nth-child(2) {
   flex-grow: 1;
+  padding: 0.2em 0.2em;
 }
 
 .container-list > label {
