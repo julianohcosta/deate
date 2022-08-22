@@ -6,18 +6,20 @@ import LoadingTableScreen from "../components/TableComponent/LoadingTableScreen"
 import { message } from "antd";
 
 const EstoqueMensal = () => {
+
   const [unidades, setUnidades] = useState([]);
   const [disabled, setDisabled] = useState(false);
   const [selectedEquipes, setSelectedEquipes] = useState([]);
-  const [selectedDeate, setSelectedDeate] = useState("");
   const [loaded, setLoaded] = useState(false);
   const [equipes, setEquipes] = useState([]);
-  const [periodo, setPeriodo] = useState({ inicial: "", final: "" });
   const [count, setCount] = useState(0);
   const [totalEquipes, setTotalEquipes] = useState(0);
   const [isConsultando, setIsConsultando] = useState(false);
   const [listaResultado, setListaResultado] = useState([]);
   const [showResultTable, setShowResultTable] = useState(false);
+  const [less12Months, setLess12Months] = useState(true);
+  const [selectedDeate, setSelectedDeate] = useState("");
+  const [periodo, setPeriodo] = useState({ inicial: "", final: "" });
 
   /** Max amount of messages on screen simultaneously */
   message.config({ maxCount: 3 });
@@ -57,6 +59,17 @@ const EstoqueMensal = () => {
   };
 
   const periodoHandler = dates => {
+
+    const dateDiff = dates[1].diff(dates[0], 'months', true) < 12;
+    console.log(dateDiff)
+    console.log(dates[1].diff(dates[0], 'months', true));
+
+    if (!dateDiff) {
+      setLess12Months(false);
+    } else {
+      setLess12Months(true);
+    }
+
     const periodoInicial = dates[0].format("DD/MM/YYYY");
     const periodoFinal = dates[1].format("DD/MM/YYYY");
 
@@ -72,6 +85,19 @@ const EstoqueMensal = () => {
       message
         .error({
           content: "Informe o período a ser consultado!",
+          style: {
+            fontSize: ".575rem",
+            fontWeight: "500",
+          },
+        })
+        .then(); // 'then' para a IDE não apresentar erro.
+      return;
+    }
+
+    if(!less12Months){
+      message
+        .error({
+          content: "Período selecionado deve ser menor ou igual a 12 meses",
           style: {
             fontSize: ".575rem",
             fontWeight: "500",

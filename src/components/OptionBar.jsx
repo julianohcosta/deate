@@ -47,11 +47,7 @@ const OptionBar = props => {
           <Select
             mode="multiple"
             status={status}
-            style={{
-              marginLeft: "0.4em",
-              width: "24em",
-              fontSize: ".525rem",
-            }}
+            style={{marginLeft: "0.4em", width: "24em", fontSize: ".525rem"}}
             placeholder="Selecione o(s) ano(s)"
             optionLabelProp="label"
             onChange={handleChange}
@@ -61,33 +57,21 @@ const OptionBar = props => {
               return (
                 <Option value={ano} label={ano}>
                   <div className="ano-item">{ano}</div>
-                </Option>
-              )
-            })}
+                </Option>)})}
           </Select>
           <span
-            style={{
-              marginLeft: "0.5em",
-              fontSize: "0.725rem",
-            }}
+            style={{marginLeft: "0.5em", fontSize: "0.725rem"}}
           >
             Meses:
           </span>
           <Select
             defaultValue="Todos"
-            style={{
-              width: "8em",
-              fontSize: ".575rem",
-            }}
+            style={{width: "8em", fontSize: ".575rem"}}
             disabled={disabled}
             onChange={handleMonthChange}
           >
             <Option value="">Todos</Option>
-            {meses.map((mes, idx) => {
-              return (
-                <Option value={idx}>{mes}</Option>
-              )
-            })}}
+            {meses.map((mes, idx) => {return (<Option value={idx}>{mes}</Option>)})}}
           </Select>
         </Space>
       )}
