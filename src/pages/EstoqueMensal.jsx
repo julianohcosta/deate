@@ -6,7 +6,6 @@ import LoadingTableScreen from "../components/TableComponent/LoadingTableScreen"
 import { message } from "antd";
 
 const EstoqueMensal = () => {
-
   const [unidades, setUnidades] = useState([]);
   const [disabled, setDisabled] = useState(false);
   const [selectedEquipes, setSelectedEquipes] = useState([]);
@@ -59,8 +58,7 @@ const EstoqueMensal = () => {
   };
 
   const periodoHandler = dates => {
-
-    const dateDiff = dates[1].diff(dates[0], 'months', true) < 12;
+    const dateDiff = dates[1].diff(dates[0], "months", true) < 12;
 
     if (!dateDiff) {
       setLess12Months(false);
@@ -86,26 +84,26 @@ const EstoqueMensal = () => {
           style: {
             fontSize: ".575rem",
             fontWeight: "500",
-            cursor: 'pointer'
+            cursor: "pointer",
           },
-          key: '001',
-          onClick: () => message.destroy('001')
+          key: "001",
+          onClick: () => message.destroy("001"),
         })
         .then(); // 'then' para a IDE não apresentar erro.
       return;
     }
 
-    if(!less12Months){
+    if (!less12Months) {
       message
         .error({
           content: "Período selecionado deve ser menor ou igual a 12 meses",
           style: {
             fontSize: ".575rem",
             fontWeight: "500",
-            cursor: 'pointer'
+            cursor: "pointer",
           },
-          key: '002',
-          onClick: () => message.destroy('002')
+          key: "002",
+          onClick: () => message.destroy("002"),
         })
         .then(); // 'then' para a IDE não apresentar erro.
       return;
@@ -118,13 +116,13 @@ const EstoqueMensal = () => {
           style: {
             fontSize: ".575rem",
             fontWeight: "500",
-            cursor: 'pointer'
+            cursor: "pointer",
           },
-          key: '003',
-          onClick: () => message.destroy('003')
+          key: "003",
+          onClick: () => message.destroy("003"),
         })
         .then(); // 'then' para a IDE não apresentar erro.
-      return
+      return;
     }
 
     setTotalEquipes(selectedEquipes.length);
@@ -135,11 +133,16 @@ const EstoqueMensal = () => {
 
       const url =
         "https://localhost:8443/ctx/run/DEATE - relatorios gerenciais/relatorioEstoque" +
-        "?nomeDeate=" + selectedDeate.nome +
-        "&nomeEquipe=" + equipe.nome +
-        "&codigoEquipe=" + equipe.codigo +
-        "&periodoInicial=" + periodo.inicial +
-        "&periodoFinal=" + periodo.final;
+        "?nomeDeate=" +
+        selectedDeate.nome +
+        "&nomeEquipe=" +
+        equipe.nome +
+        "&codigoEquipe=" +
+        equipe.codigo +
+        "&periodoInicial=" +
+        periodo.inicial +
+        "&periodoFinal=" +
+        periodo.final;
 
       console.log(url);
 
@@ -165,6 +168,8 @@ const EstoqueMensal = () => {
         setLoaded(false);
         setShowResultTable(true);
         setCount(0);
+        setSelectedEquipes([]);
+        setPeriodo({ inicial: "", final: "" });
       }
     }
   }, [count, totalEquipes]);
