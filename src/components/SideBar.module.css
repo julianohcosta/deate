@@ -6,11 +6,38 @@
     font-size: 0.8rem;
 }
 
+.link-container {
+    list-style: none;
+}
+
+.link-container li {
+    margin-left: -1.6em;
+}
+
 .sidebarItem {
     color: var(--main-text-color);
     font-size: 0.725rem;
     font-weight: 500;
     cursor: pointer;
+    position: relative;
+}
+
+.sidebarItem::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--bg-primary-clr);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 250ms ease-in;
+}
+
+.sidebarItem:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
 }
 
 .logo {

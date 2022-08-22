@@ -10,7 +10,7 @@ const RHAP = () => {
   const [selectedMonth, setSelectedMonth] = useState('');
   const [unidades, setUnidades] = useState([]);
   const [loaded, setLoaded] = useState(false);
-  const [availablePeriods, setAvailablePeriods] = useState([]);
+  const [rhaps, setRhaps] = useState([]);
 
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const RHAP = () => {
     fetch('https://localhost:8443/ctx/run/DEATE%20-%20relatorios%20gerenciais/deatesAPI', {signal})
       .then(res => res.json())
       .then(resposta => {
-        if (resposta['deates']){
+        if (resposta['deates']) {
           setUnidades(resposta['deates']);
           setLoaded(true);
         } else {
@@ -34,33 +34,49 @@ const RHAP = () => {
   }, []);
 
   const selectedYearsHandler = (values) => {
-      setSelectedYears( () => [...values])
+    setSelectedYears(() => [...values])
   }
 
   const selectedMonthHandler = (month) => {
-    setSelectedMonth( month);
+    setSelectedMonth(month);
   }
 
   const selectEquipeHandler = (values) => {
-    setSelectedEquipes( () => [...values])
+    setSelectedEquipes(() => [...values])
   }
 
   const gerarRelatorio = () => {
 
     if (selectedYears.length === 0) {
       message.error({
-          content: "Selecione ao menos um ano",
-          style: {
-            fontSize: ".575rem",
-            fontWeight: "500",
-            cursor: 'pointer'
-          },
-        key: '0101',
-        onClick: () => message.destroy('0101')
-        })
+        content: "Selecione ao menos um ano",
+        style: {
+          fontSize: ".575rem",
+          fontWeight: "500",
+          cursor: 'pointer'
+        },
+        key: '004',
+        onClick: () => message.destroy('0104')
+      })
         .then(); // 'then' para a IDE não apresentar erro.
-
       return
+    }
+
+    for (const ano of selectedYears) {
+      const url = 'https://localhost:8443/ctx/run/DEATE%20-%20relatorios gerenciais/periodosDisponiveis?' +
+        '&ano=' + ano +
+        '&mes=' + selectedMonth
+
+      fetch(url)
+        .then(resp => resp.json())
+        .then(rel => {
+          setRhaps(prevListaResultado => [
+            ...prevListaResultado,
+            ...rel,
+          ]);
+        })
+        .catch(e => console.log(e))
+      console.log(url);
     }
 
     const maxYear = selectedYears.reduce((a, b) => {
@@ -72,7 +88,7 @@ const RHAP = () => {
 
   return (
     <>
-      {loaded &&<RelatorioLayout
+      {loaded && <RelatorioLayout
         disabled={disabled}
         equipes={EQUIPES}
         optionBarType={`rhap`}
