@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import AutenticandoEProcesso from "./components/UI/AutenticandoEProcesso";
 import SideBar from "./components/SideBar";
 import Main from "./pages/Main";
 import EstoqueMensal from "./pages/EstoqueMensal";
@@ -11,7 +12,6 @@ function App() {
   const [visible, setVisible] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState();
   const [authenticated, setAuthenticated] = useState(false);
-
   const { isLoading, error, sendRequest } = useHttp(
     {
       url: "https://localhost:8443/ctx/run/DEATE%20-%20relatorios%20gerenciais/autenticarEprocesso",
@@ -54,6 +54,7 @@ function App() {
           visible={visible}
         />
         <Main onSideBarClick={sideBarHandle}>{selectedMenu}</Main>
+        {isLoading && <AutenticandoEProcesso />}
       </div>
     </>
   );
