@@ -3,6 +3,7 @@ import RelatorioLayout from "../components/RelatorioLayout";
 import useHttp from "../hooks/useHttp";
 import TableComponent from "../components/TableComponent/TableComponent";
 import LoadingTableScreen from "../components/TableComponent/LoadingTableScreen";
+import { v4 as uuidv4 } from 'uuid';
 import { message } from "antd";
 
 const EstoqueMensal = () => {
@@ -78,6 +79,7 @@ const EstoqueMensal = () => {
   const gerarRelatorio = () => {
     /** Data inicial e final são obrigatórias */
     if (!periodo.inicial || !periodo.final) {
+      const uniqueKey = uuidv4();
       message
         .error({
           content: "Informe o período a ser consultado!",
@@ -86,14 +88,15 @@ const EstoqueMensal = () => {
             fontWeight: "500",
             cursor: "pointer",
           },
-          key: "001",
-          onClick: () => message.destroy("001"),
+          key: uniqueKey,
+          onClick: () => message.destroy(uniqueKey),
         })
         .then(); // 'then' para a IDE não apresentar erro.
       return;
     }
 
     if (!less12Months) {
+      const uniqueKey = uuidv4();
       message
         .error({
           content: "Período selecionado deve ser menor ou igual a 12 meses",
@@ -102,14 +105,15 @@ const EstoqueMensal = () => {
             fontWeight: "500",
             cursor: "pointer",
           },
-          key: "002",
-          onClick: () => message.destroy("002"),
+          key: uniqueKey,
+          onClick: () => message.destroy(uniqueKey),
         })
         .then(); // 'then' para a IDE não apresentar erro.
       return;
     }
 
     if (selectedEquipes.length === 0) {
+      const uniqueKey = uuidv4();
       message
         .error({
           content: "Selecione ao menos uma equipe",
@@ -118,8 +122,8 @@ const EstoqueMensal = () => {
             fontWeight: "500",
             cursor: "pointer",
           },
-          key: "003",
-          onClick: () => message.destroy("003"),
+          key: uniqueKey,
+          onClick: () => message.destroy(uniqueKey),
         })
         .then(); // 'then' para a IDE não apresentar erro.
       return;
@@ -133,23 +137,17 @@ const EstoqueMensal = () => {
 
       const url =
         "https://localhost:8443/ctx/run/DEATE - relatorios gerenciais/relatorioEstoque" +
-        "?nomeDeate=" +
-        selectedDeate.nome +
-        "&nomeEquipe=" +
-        equipe.nome +
-        "&codigoEquipe=" +
-        equipe.codigo +
-        "&periodoInicial=" +
-        periodo.inicial +
-        "&periodoFinal=" +
-        periodo.final;
-
-      console.log(url);
+        "?nomeDeate=" + selectedDeate.nome +
+        "&nomeEquipe=" + equipe.nome +
+        "&codigoEquipe=" + equipe.codigo +
+        "&periodoInicial=" + periodo.inicial +
+        "&periodoFinal=" + periodo.final;
 
       fetch(url)
         .then(response => response.json())
         .then(estoque => {
           // FIXME: Para alguns resultados e alguns periodos, nao retorna um iteravel
+          console.log(url);
           console.log(estoque);
           setListaResultado(prevListaResultado => [
             ...prevListaResultado,

@@ -60,9 +60,9 @@ const OptionBar = props => {
             onChange={handleChange}
             disabled={disabled}
           >
-            {anos.map(ano => {
+            {anos.map((ano, idx) => {
               return (
-                <Option value={ano} label={ano}>
+                <Option key={idx} value={ano} label={ano}>
                   <div className="ano-item">{ano}</div>
                 </Option>)})}
           </Select>

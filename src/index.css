@@ -2,7 +2,7 @@
   box-sizing: border-box;
 
   /** VARIÁVEIS */
-  --main-font: Helvetica, Arial, sans-serif;
+  --main-font: "Open Sans", Arial, sans-serif;
   --bg-primary-clr: #00205b;
   --bg-secondary-clr: #64a70b;
   --header-text-clr: #ffffff;
