@@ -42,7 +42,7 @@ const Header = props => {
           <img
             className={classes.logolabin}
             src={
-              "https://intranet.receita.fazenda/administracao/rf01/estrutura-organizacional/unidades-regionais/drfana/docreceitabr/manual-docreceitabr/imagens/labin01/image_preview"
+              "https://edicao.intranet.receita.fazenda/administracao/rf01/estrutura-organizacional/superintendencia-regional/gabinete/labin01/imagens/logolabinnobg387x649/image_preview"
             }
             alt="Awesome Labin01 logo"
           />

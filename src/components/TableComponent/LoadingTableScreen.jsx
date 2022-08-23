@@ -26,7 +26,7 @@ const CreatingTableScreen = ({ totalEquipes, count }) => {
       <Card className={classes["creating-table-screen--header"]}>
         <img
           src={
-            "https://intranet.receita.fazenda/administracao/rf01/estrutura-organizacional/unidades-regionais/drfana/docreceitabr/manual-docreceitabr/imagens/labin01/image_preview"
+            "https://edicao.intranet.receita.fazenda/administracao/rf01/estrutura-organizacional/superintendencia-regional/gabinete/labin01/imagens/logolabinnobg387x649/image_preview"
           }
           alt="logo Labin01"
         />
