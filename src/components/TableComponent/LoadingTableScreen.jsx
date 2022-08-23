@@ -20,7 +20,7 @@ const ProgressBar = props => {
   );
 };
 
-const CreatingTableScreen = ({ totalEquipes, count }) => {
+const CreatingTableScreen = ({ total, count, label }) => {
   return (
     <Modal classNameOverlay={classes["creating-table-screen-container"]}>
       <Card className={classes["creating-table-screen--header"]}>
@@ -31,17 +31,14 @@ const CreatingTableScreen = ({ totalEquipes, count }) => {
           alt="logo Labin01"
         />
         <div className={classes["creating-table-screen--header--text"]}>
-          <p>
-            Gerando os relatórios de estoque para <span>{totalEquipes}</span>{" "}
-            equipes.
-          </p>
+          {label}
           <p>
             Total de consultas concluídas <span>{count}</span>. Falta(m)
-            <span> {totalEquipes - count}</span>.
+            <span> {total - count}</span>.
           </p>
         </div>
       </Card>
-      <ProgressBar numEquipes={totalEquipes} currentCount={count} />
+      <ProgressBar numEquipes={total} currentCount={count} />
     </Modal>
   );
 };

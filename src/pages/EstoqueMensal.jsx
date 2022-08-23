@@ -5,6 +5,7 @@ import TableComponent from "../components/TableComponent/TableComponent";
 import LoadingTableScreen from "../components/TableComponent/LoadingTableScreen";
 import { v4 as uuidv4 } from 'uuid';
 import { message } from "antd";
+import {GROUPED_COLUMNS} from "../components/TableComponent/columnsEstoque";
 
 const EstoqueMensal = () => {
   const [unidades, setUnidades] = useState([]);
@@ -154,11 +155,14 @@ const EstoqueMensal = () => {
   return (
     <>
       {isConsultando && (
-        <LoadingTableScreen totalEquipes={totalEquipes} count={count} />
+        <LoadingTableScreen total={totalEquipes} count={count}
+          label={(<p>Gerando os relatórios de estoque para <span>{totalEquipes}</span>{" "}equipes.</p>)}
+        />
       )}
 
       {showResultTable && (
         <TableComponent
+          columns={GROUPED_COLUMNS}
           listaResultado={listaResultado}
           onClose={valor => {
             setShowResultTable(valor);
