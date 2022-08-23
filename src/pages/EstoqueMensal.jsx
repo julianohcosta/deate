@@ -3,6 +3,7 @@ import RelatorioLayout from "../components/RelatorioLayout";
 import useHttp from "../hooks/useHttp";
 import TableComponent from "../components/TableComponent/TableComponent";
 import LoadingTableScreen from "../components/TableComponent/LoadingTableScreen";
+import { v4 as uuidv4 } from 'uuid';
 import { message } from "antd";
 
 const EstoqueMensal = () => {
@@ -22,6 +23,21 @@ const EstoqueMensal = () => {
 
   /** Max amount of messages on screen simultaneously */
   message.config({ maxCount: 3 });
+
+  const showMessage = (msg, uniqueKey) =>{
+    message.error({
+      content: msg,
+      style: {
+        fontSize: ".575rem",
+        fontWeight: "500",
+        cursor: 'pointer'
+      },
+      key: uniqueKey,
+      onClick: () => message.destroy(uniqueKey)
+    })
+      .then(); // 'then' para a IDE não apresentar erro.
+  }
+
 
   const { sendRequest } = useHttp(
     {
@@ -78,50 +94,17 @@ const EstoqueMensal = () => {
   const gerarRelatorio = () => {
     /** Data inicial e final são obrigatórias */
     if (!periodo.inicial || !periodo.final) {
-      message
-        .error({
-          content: "Informe o período a ser consultado!",
-          style: {
-            fontSize: ".575rem",
-            fontWeight: "500",
-            cursor: "pointer",
-          },
-          key: "001",
-          onClick: () => message.destroy("001"),
-        })
-        .then(); // 'then' para a IDE não apresentar erro.
+      showMessage("Informe o período a ser consultado!", uuidv4());
       return;
     }
 
     if (!less12Months) {
-      message
-        .error({
-          content: "Período selecionado deve ser menor ou igual a 12 meses",
-          style: {
-            fontSize: ".575rem",
-            fontWeight: "500",
-            cursor: "pointer",
-          },
-          key: "002",
-          onClick: () => message.destroy("002"),
-        })
-        .then(); // 'then' para a IDE não apresentar erro.
+      showMessage("Período selecionado deve ser menor ou igual a 12 meses", uuidv4());
       return;
     }
 
     if (selectedEquipes.length === 0) {
-      message
-        .error({
-          content: "Selecione ao menos uma equipe",
-          style: {
-            fontSize: ".575rem",
-            fontWeight: "500",
-            cursor: "pointer",
-          },
-          key: "003",
-          onClick: () => message.destroy("003"),
-        })
-        .then(); // 'then' para a IDE não apresentar erro.
+      showMessage("Selecione ao menos uma equipe", uuidv4());
       return;
     }
 
@@ -133,23 +116,17 @@ const EstoqueMensal = () => {
 
       const url =
         "https://localhost:8443/ctx/run/DEATE - relatorios gerenciais/relatorioEstoque" +
-        "?nomeDeate=" +
-        selectedDeate.nome +
-        "&nomeEquipe=" +
-        equipe.nome +
-        "&codigoEquipe=" +
-        equipe.codigo +
-        "&periodoInicial=" +
-        periodo.inicial +
-        "&periodoFinal=" +
-        periodo.final;
-
-      console.log(url);
+        "?nomeDeate=" + selectedDeate.nome +
+        "&nomeEquipe=" + equipe.nome +
+        "&codigoEquipe=" + equipe.codigo +
+        "&periodoInicial=" + periodo.inicial +
+        "&periodoFinal=" + periodo.final;
 
       fetch(url)
         .then(response => response.json())
         .then(estoque => {
           // FIXME: Para alguns resultados e alguns periodos, nao retorna um iteravel
+          console.log(url);
           console.log(estoque);
           setListaResultado(prevListaResultado => [
             ...prevListaResultado,

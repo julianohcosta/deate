@@ -60,9 +60,9 @@ const OptionBar = props => {
             onChange={handleChange}
             disabled={disabled}
           >
-            {anos.map(ano => {
+            {anos.map((ano, idx) => {
               return (
-                <Option value={ano} label={ano}>
+                <Option key={idx} value={ano} label={ano}>
                   <div className="ano-item">{ano}</div>
                 </Option>)})}
           </Select>
@@ -78,7 +78,7 @@ const OptionBar = props => {
             onChange={handleMonthChange}
           >
             <Option value="">Todos</Option>
-            {meses.map((mes, idx) => {return (<Option key={idx} value={idx}>{mes}</Option>)})}}
+            {meses.map((mes, idx) => {return (<Option key={idx+1} value={idx+1}>{mes}</Option>)})}}
           </Select>
         </Space>
       )}
