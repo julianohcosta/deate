@@ -154,6 +154,12 @@ const RHAP = () => {
       const equipe = equipes.find(e => e['nome'] === nomeEquipe );
       rhaps.forEach(rhap => {
 
+        const moment2Check = moment(rhap['dataInicial'], 'DD/MM/YYYY')
+        const currentDate = moment()
+        if (moment2Check.isSame(currentDate, 'month') && moment2Check.isSame(currentDate, 'month')){
+          return;
+        }
+
         const url = 'https://localhost:8443/ctx/run/DEATE%20-%20relatorios gerenciais/usuariosAPI?'+
           'unidade=' + selectedDeate['codigo'] +
           '&equipe=' + equipe['codigo'] +
