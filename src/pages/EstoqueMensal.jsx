@@ -24,6 +24,21 @@ const EstoqueMensal = () => {
   /** Max amount of messages on screen simultaneously */
   message.config({ maxCount: 3 });
 
+  const showMessage = (msg, uniqueKey) =>{
+    message.error({
+      content: msg,
+      style: {
+        fontSize: ".575rem",
+        fontWeight: "500",
+        cursor: 'pointer'
+      },
+      key: uniqueKey,
+      onClick: () => message.destroy(uniqueKey)
+    })
+      .then(); // 'then' para a IDE não apresentar erro.
+  }
+
+
   const { sendRequest } = useHttp(
     {
       url: "https://localhost:8443/ctx/run/DEATE%20-%20relatorios%20gerenciais/deates",
@@ -79,53 +94,17 @@ const EstoqueMensal = () => {
   const gerarRelatorio = () => {
     /** Data inicial e final são obrigatórias */
     if (!periodo.inicial || !periodo.final) {
-      const uniqueKey = uuidv4();
-      message
-        .error({
-          content: "Informe o período a ser consultado!",
-          style: {
-            fontSize: ".575rem",
-            fontWeight: "500",
-            cursor: "pointer",
-          },
-          key: uniqueKey,
-          onClick: () => message.destroy(uniqueKey),
-        })
-        .then(); // 'then' para a IDE não apresentar erro.
+      showMessage("Informe o período a ser consultado!", uuidv4());
       return;
     }
 
     if (!less12Months) {
-      const uniqueKey = uuidv4();
-      message
-        .error({
-          content: "Período selecionado deve ser menor ou igual a 12 meses",
-          style: {
-            fontSize: ".575rem",
-            fontWeight: "500",
-            cursor: "pointer",
-          },
-          key: uniqueKey,
-          onClick: () => message.destroy(uniqueKey),
-        })
-        .then(); // 'then' para a IDE não apresentar erro.
+      showMessage("Período selecionado deve ser menor ou igual a 12 meses", uuidv4());
       return;
     }
 
     if (selectedEquipes.length === 0) {
-      const uniqueKey = uuidv4();
-      message
-        .error({
-          content: "Selecione ao menos uma equipe",
-          style: {
-            fontSize: ".575rem",
-            fontWeight: "500",
-            cursor: "pointer",
-          },
-          key: uniqueKey,
-          onClick: () => message.destroy(uniqueKey),
-        })
-        .then(); // 'then' para a IDE não apresentar erro.
+      showMessage("Selecione ao menos uma equipe", uuidv4());
       return;
     }
 

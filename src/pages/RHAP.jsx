@@ -19,6 +19,20 @@ const RHAP = () => {
   /** Max amount of messages on screen simultaneously */
   message.config({maxCount: 3});
 
+  const showMessage = (msg, uniqueKey) =>{
+    message.error({
+      content: msg,
+      style: {
+        fontSize: ".575rem",
+        fontWeight: "500",
+        cursor: 'pointer'
+      },
+      key: uniqueKey,
+      onClick: () => message.destroy(uniqueKey)
+    })
+      .then(); // 'then' para a IDE não apresentar erro.
+  }
+
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
@@ -41,8 +55,10 @@ const RHAP = () => {
 
   const selectedYearsHandler = (values) => {
     setSelectedYears(() => [...values])
+  }
 
-    const requestList = values.map(ano => {
+  useEffect(() => {
+    const requestList = selectedYears.map(ano => {
       const url = 'https://localhost:8443/ctx/run/DEATE%20-%20relatorios gerenciais/periodosDisponiveis?' +
         'ano=' + ano +
         '&mes=' + selectedMonth
@@ -66,7 +82,7 @@ const RHAP = () => {
         setMaiorRhap(null);
       }
     })
-  }
+  }, [selectedYears, selectedMonth]);
 
   const selectedMonthHandler = (month) => {
     setSelectedMonth(month);
@@ -79,18 +95,7 @@ const RHAP = () => {
   const selectDeateHandler = deate => {
 
     if (selectedYears.length === 0) {
-      const uniqueKey = uuidv4();
-      message.error({
-        content: "Selecione ao menos um ano",
-        style: {
-          fontSize: ".575rem",
-          fontWeight: "500",
-          cursor: 'pointer'
-        },
-        key: uniqueKey,
-        onClick: () => message.destroy(uniqueKey)
-      })
-        .then(); // 'then' para a IDE não apresentar erro.
+      showMessage("Selecione ao menos um ano", uuidv4());
       return
     }
 
@@ -119,34 +124,16 @@ const RHAP = () => {
   const gerarRelatorio = () => {
 
     if (selectedYears.length === 0) {
-      const uniqueKey = uuidv4();
-      message.error({
-        content: "Selecione ao menos um ano",
-        style: {
-          fontSize: ".575rem",
-          fontWeight: "500",
-          cursor: 'pointer'
-        },
-        key: uniqueKey,
-        onClick: () => message.destroy(uniqueKey)
-      })
-        .then(); // 'then' para a IDE não apresentar erro.
+      showMessage("Selecione ao menos um ano", uuidv4());
       return
     }
 
     if (selectedEquipes.length === 0) {
-      const uniqueKey = uuidv4();
-      message.error({
-          content: "Selecione ao menos uma equipe",
-          style: {
-            fontSize: ".575rem",
-            fontWeight: "500",
-            cursor: "pointer",
-          },
-          key: uniqueKey,
-          onClick: () => message.destroy(uniqueKey),
-        })
-        .then(); // 'then' para a IDE não apresentar erro.
+      showMessage("Selecione ao menos uma equipe", uuidv4());
+      return;
+    }
+    if (selectedYears[0] ===  new Date().getFullYear() && selectedMonth === new Date().getMonth() + 1) {
+      showMessage("Não é possível consultar o mês atual, por favor selecione outro!", uuidv4());
       return;
     }
 
@@ -188,8 +175,6 @@ const RHAP = () => {
           .catch(e => {console.log(e)})
       })
     })
-
-
   }
 
   return (
