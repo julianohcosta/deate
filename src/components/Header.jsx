@@ -3,6 +3,7 @@ import { MenuOutlined } from "@ant-design/icons";
 import { Col, Row } from "antd";
 import { useEffect, useState } from "react";
 import useHttp from "../hooks/useHttp";
+import logoLabin from "../assets/logoLabin.png";
 
 const Header = props => {
   const [username, setusername] = useState("");
@@ -41,7 +42,9 @@ const Header = props => {
         <div className={classes["logo-container"]}>
           <img
             className={classes.logolabin}
-            src={`https://i.ibb.co/2yfQ1x6/logo-Labin.png`}
+            src={
+              "https://rfbgov.sharepoint.com/sites/Labin01/_api/siteiconmanager/getsitelogo?type='1'&hash=637674275329683070"
+            }
             alt="Awesome Labin01 logo"
           />
         </div>
