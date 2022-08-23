@@ -3,7 +3,6 @@ import { MenuOutlined } from "@ant-design/icons";
 import { Col, Row } from "antd";
 import { useEffect, useState } from "react";
 import useHttp from "../hooks/useHttp";
-import logoLabin from "../assets/logoLabin.png";
 
 const Header = props => {
   const [username, setusername] = useState("");
@@ -43,7 +42,7 @@ const Header = props => {
           <img
             className={classes.logolabin}
             src={
-              "https://rfbgov.sharepoint.com/sites/Labin01/_api/siteiconmanager/getsitelogo?type='1'&hash=637674275329683070"
+              "https://intranet.receita.fazenda/administracao/rf01/estrutura-organizacional/unidades-regionais/drfana/docreceitabr/manual-docreceitabr/imagens/labin01/image_preview"
             }
             alt="Awesome Labin01 logo"
           />

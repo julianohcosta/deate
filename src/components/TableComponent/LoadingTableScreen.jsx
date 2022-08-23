@@ -3,8 +3,6 @@ import classes from "./LoadingTableScreen.module.css";
 import Modal from "../UI/Modal";
 import Card from "../UI/Card";
 
-import logoLabin from "../../assets/logoLabin.png";
-
 const ProgressBar = props => {
   const percentNow = Math.trunc((props.currentCount / props.numEquipes) * 100);
 
@@ -28,7 +26,7 @@ const CreatingTableScreen = ({ totalEquipes, count }) => {
       <Card className={classes["creating-table-screen--header"]}>
         <img
           src={
-            "https://rfbgov.sharepoint.com/sites/Labin01/_api/siteiconmanager/getsitelogo?type='1'&hash=637674275329683070"
+            "https://intranet.receita.fazenda/administracao/rf01/estrutura-organizacional/unidades-regionais/drfana/docreceitabr/manual-docreceitabr/imagens/labin01/image_preview"
           }
           alt="logo Labin01"
         />
