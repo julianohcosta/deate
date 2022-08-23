@@ -17,7 +17,6 @@ import { CSVLink } from "react-csv";
 import classes from "./TableComponent.module.css";
 import GlobalFilterComponent from "./GlobalFilterComponent";
 import { GROUPED_COLUMNS } from "./columns";
-import DUMMY_DATA from "./DUMMY_DATA.json";
 
 const TableComponent = props => {
   const [hiddenTable, setHiddenTable] = useState(false);
@@ -72,22 +71,32 @@ const TableComponent = props => {
           />
         </div>
         <div className={classes["container-export"]}>
-          <button className={classes["btn-export--csv"]}>
-            <CSVLink
-              data={data}
-              target="_blank"
-              filename={"Relatório_Deates.csv"}
-            >
-              <GrDocumentCsv />
-            </CSVLink>
-          </button>
-
-          <button
-            className={classes["btn-export--excel"]}
-            onClick={excelExportHandle}
+          <p>Exportar:</p>
+          <CSVLink
+            data={data}
+            target="_blank"
+            filename={"Relatório_Deates.csv"}
+            className={classes["tooltip"]}
           >
-            <SiMicrosoftexcel />
-          </button>
+            <GrDocumentCsv className={classes["btn-export--csv"]} />
+            <span
+              className={`${classes["tooltiptext"]} ${classes["tooltiptext-csv"]}`}
+            >
+              Arquivo CSV
+            </span>
+          </CSVLink>
+
+          <div className={classes["tooltip"]}>
+            <SiMicrosoftexcel
+              className={classes["btn-export--excel"]}
+              onClick={excelExportHandle}
+            />
+            <span
+              className={`${classes["tooltiptext"]} ${classes["tooltiptext-excel"]}`}
+            >
+              Arquivo Excel
+            </span>
+          </div>
         </div>
         {/** Botao Fechar Tabela*/}
         <MdClose
