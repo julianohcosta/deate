@@ -1,11 +1,19 @@
-import React, {useMemo, useState} from "react";
-import {useGlobalFilter, usePagination, useSortBy, useTable,} from "react-table";
-import {AiOutlineSortAscending, AiOutlineSortDescending,} from "react-icons/ai";
-import {GrDocumentCsv} from "react-icons/gr";
-import {SiMicrosoftexcel} from "react-icons/si";
-import {MdClose} from "react-icons/md";
+import React, { useMemo, useState } from "react";
+import {
+  useGlobalFilter,
+  usePagination,
+  useSortBy,
+  useTable,
+} from "react-table";
+import {
+  AiOutlineSortAscending,
+  AiOutlineSortDescending,
+} from "react-icons/ai";
+import { GrDocumentCsv } from "react-icons/gr";
+import { SiMicrosoftexcel } from "react-icons/si";
+import { MdClose } from "react-icons/md";
 import * as XLSX from "xlsx";
-import {CSVLink} from "react-csv";
+import { CSVLink } from "react-csv";
 import classes from "./TableComponent.module.css";
 import GlobalFilterComponent from "./GlobalFilterComponent";
 
@@ -31,9 +39,9 @@ const TableComponent = props => {
     setPageSize,
     state,
     setGlobalFilter,
-  } = useTable({columns, data}, useGlobalFilter, useSortBy, usePagination); // react-table instance
+  } = useTable({ columns, data }, useGlobalFilter, useSortBy, usePagination); // react-table instance
 
-  const {pageSize, pageIndex, globalFilter} = state;
+  const { pageSize, pageIndex, globalFilter } = state;
 
   const excelExportHandle = () => {
     const wb = XLSX.utils.book_new();
@@ -61,22 +69,19 @@ const TableComponent = props => {
           />
         </div>
         <div className={classes["container-export"]}>
-          <button className={classes["btn-export--csv"]}>
-            <CSVLink
-              data={data}
-              target="_blank"
-              filename={"Relatório_Deates.csv"}
-            >
-              <GrDocumentCsv/>
-            </CSVLink>
-          </button>
+          <p>Exportar:</p>
+          <CSVLink
+            data={data}
+            target="_blank"
+            filename={"Relatório_Deates.csv"}
+          >
+            <GrDocumentCsv className={classes["btn-export--csv"]} />
+          </CSVLink>
 
-          <button
+          <SiMicrosoftexcel
             className={classes["btn-export--excel"]}
             onClick={excelExportHandle}
-          >
-            <SiMicrosoftexcel/>
-          </button>
+          />
         </div>
         {/** Botao Fechar Tabela*/}
         <MdClose
@@ -86,40 +91,40 @@ const TableComponent = props => {
       </div>
       <table {...getTableProps()} className={classes["table-resultado"]}>
         <thead>
-        {headerGroups.map(headerGroup => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map(column => (
-              <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                {column.render("Header")}
-                <span>
+          {headerGroups.map(headerGroup => (
+            <tr {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map(column => (
+                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                  {column.render("Header")}
+                  <span>
                     {column.isSorted ? (
                       column.isSortedDesc ? (
-                        <AiOutlineSortDescending/>
+                        <AiOutlineSortDescending />
                       ) : (
-                        <AiOutlineSortAscending/>
+                        <AiOutlineSortAscending />
                       )
                     ) : (
                       ""
                     )}
                   </span>
-              </th>
-            ))}
-          </tr>
-        ))}
+                </th>
+              ))}
+            </tr>
+          ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-        {page.map(row => {
-          prepareRow(row);
-          return (
-            <tr {...row.getRowProps()}>
-              {row.cells.map(cell => {
-                return (
-                  <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                );
-              })}
-            </tr>
-          );
-        })}
+          {page.map(row => {
+            prepareRow(row);
+            return (
+              <tr {...row.getRowProps()}>
+                {row.cells.map(cell => {
+                  return (
+                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                  );
+                })}
+              </tr>
+            );
+          })}
         </tbody>
       </table>
       <div className={classes["container-pagination"]}>

@@ -1,5 +1,3 @@
-import {format} from "date-fns";
-
 export const GROUPED_COLUMNS = [
   {
     Header: "Unidade",
@@ -11,22 +9,22 @@ export const GROUPED_COLUMNS = [
   },
   {
     Header: "Data Inicial",
-    accessor: "dataInicial"
+    accessor: "dataInicial",
   },
   {
     Header: "Data Final",
-    accessor: "dataFinal"
+    accessor: "dataFinal",
   },
   {
     Header: "Usuário",
-    accessor: "usuarioNome"
+    accessor: "usuarioNome",
   },
   {
     Header: "CHT",
-    accessor: "cht"
+    accessor: "cht",
   },
   {
     Header: "IAH",
-    accessor: "iah"
+    accessor: "iah",
   },
 ];
