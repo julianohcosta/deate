@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import RelatorioLayout from "../components/RelatorioLayout";
-import useHttp from "../hooks/useHttp";
 import TableComponent from "../components/TableComponent/TableComponent";
 import LoadingTableScreen from "../components/TableComponent/LoadingTableScreen";
-import { v4 as uuidv4 } from 'uuid';
-import { message } from "antd";
+import {v4 as uuidv4} from 'uuid';
+import {message} from "antd";
 import {GROUPED_COLUMNS} from "../components/TableComponent/columnsEstoque";
 
 const EstoqueMensal = () => {
@@ -20,19 +19,18 @@ const EstoqueMensal = () => {
   const [showResultTable, setShowResultTable] = useState(false);
   const [less12Months, setLess12Months] = useState(true);
   const [selectedDeate, setSelectedDeate] = useState("");
-  const [periodo, setPeriodo] = useState({ inicial: "", final: "" });
+  const [periodo, setPeriodo] = useState({inicial: "", final: ""});
 
   /** Max amount of messages on screen simultaneously */
-  message.config({ maxCount: 3 });
+  message.config({maxCount: 3});
 
-  const showMessage = (msg, uniqueKey) =>{
+  const showMessage = (msg) => {
+
+    const uniqueKey = uuidv4();
+
     message.error({
       content: msg,
-      style: {
-        fontSize: ".575rem",
-        fontWeight: "500",
-        cursor: 'pointer'
-      },
+      style: {fontSize: ".575rem", fontWeight: "500", cursor: 'pointer'},
       key: uniqueKey,
       onClick: () => message.destroy(uniqueKey)
     })
@@ -40,22 +38,18 @@ const EstoqueMensal = () => {
   }
 
 
-  const { sendRequest } = useHttp(
-    {
-      url: "https://localhost:8443/ctx/run/DEATE%20-%20relatorios%20gerenciais/deates",
-    },
-    response => {
-      if (response["deates"]) {
-        setUnidades(response["deates"]);
-        setLoaded(true);
-      } else {
-        // TODO: Avisar o usuário que a requisição falhou
-      }
-    }
-  );
-
   useEffect(() => {
-    sendRequest();
+    fetch('https://localhost:8443/ctx/run/DEATE%20-%20relatorios%20gerenciais/deates')
+      .then(resp => resp.json())
+      .then(response => {
+        if (response["deates"]) {
+          setUnidades(response["deates"]);
+          setLoaded(true);
+        } else {
+          // TODO: Avisar o usuário que a requisição falhou
+        }
+      })
+      .catch(e => console.log(e))
   }, []);
 
   const selectDeateHandler = deate => {
@@ -95,17 +89,17 @@ const EstoqueMensal = () => {
   const gerarRelatorio = () => {
     /** Data inicial e final são obrigatórias */
     if (!periodo.inicial || !periodo.final) {
-      showMessage("Informe o período a ser consultado!", uuidv4());
+      showMessage("Informe o período a ser consultado!");
       return;
     }
 
     if (!less12Months) {
-      showMessage("Período selecionado deve ser menor ou igual a 12 meses", uuidv4());
+      showMessage("Período selecionado deve ser menor ou igual a 12 meses");
       return;
     }
 
     if (selectedEquipes.length === 0) {
-      showMessage("Selecione ao menos uma equipe", uuidv4());
+      showMessage("Selecione ao menos uma equipe");
       return;
     }
 
@@ -147,7 +141,7 @@ const EstoqueMensal = () => {
         setShowResultTable(true);
         setCount(0);
         setSelectedEquipes([]);
-        setPeriodo({ inicial: "", final: "" });
+        setPeriodo({inicial: "", final: ""});
       }
     }
   }, [count, totalEquipes]);
@@ -156,7 +150,8 @@ const EstoqueMensal = () => {
     <>
       {isConsultando && (
         <LoadingTableScreen total={totalEquipes} count={count}
-          label={(<p>Gerando os relatórios de estoque para <span>{totalEquipes}</span>{" "}equipes.</p>)}
+                            label={(
+                              <p>Gerando os relatórios de estoque para <span>{totalEquipes}</span>{" "}equipes.</p>)}
         />
       )}
 

@@ -4,14 +4,12 @@ import {message} from "antd";
 import moment from "moment";
 import {v4 as uuidv4} from 'uuid';
 import LoadingTableScreen from "../components/TableComponent/LoadingTableScreen";
-import TableComponent from "../components/TableComponent/TableComponent";
-import {GROUPED_COLUMNS} from "../components/TableComponent/columnsRhap";
+import * as XLSX from "xlsx";
 
 const RHAP = () => {
   const [disabled, setDisabled] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [isConsultando, setIsConsultando] = useState(false);
-  const [showResultTable, setShowResultTable] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState('');
   const [selectedYears, setSelectedYears] = useState([]);
   const [selectedEquipes, setSelectedEquipes] = useState([]);
@@ -23,18 +21,18 @@ const RHAP = () => {
   const [totalConsulta, setTotalConsultas] = useState(0);
   const [count, setCount] = useState(0);
   const [listaResultado, setListaResultado] = useState([]);
+  const [listaErro, setListaErro] = useState([]);
 
   /** Max amount of messages on screen simultaneously */
   message.config({maxCount: 3});
 
-  const showMessage = (msg, uniqueKey) => {
+  const showMessage = (msg) => {
+
+    const uniqueKey = uuidv4();
+
     message.error({
       content: msg,
-      style: {
-        fontSize: ".575rem",
-        fontWeight: "500",
-        cursor: 'pointer'
-      },
+      style: {fontSize: ".575rem", fontWeight: "500", cursor: 'pointer'},
       key: uniqueKey,
       onClick: () => message.destroy(uniqueKey)
     })
@@ -104,7 +102,7 @@ const RHAP = () => {
   const selectDeateHandler = deate => {
 
     if (selectedYears.length === 0) {
-      showMessage("Selecione ao menos um ano", uuidv4());
+      showMessage("Selecione ao menos um ano");
       return
     }
 
@@ -121,7 +119,9 @@ const RHAP = () => {
         const fixedEquipes = equipes.filter(eq => !eq['sigla'].includes('EXCLUÍDA')
         ).map(eq => {
           eq['codigo'] = eq['resourceId'];
+          eq['nome'] = eq['sigla'];
           delete eq['resourceId'];
+          delete eq['sigla'];
           return eq;
         })
         setEquipes(fixedEquipes);
@@ -134,22 +134,21 @@ const RHAP = () => {
   const gerarRelatorio = () => {
 
     if (selectedYears.length === 0) {
-      showMessage("Selecione ao menos um ano", uuidv4());
+      showMessage("Selecione ao menos um ano");
       return
     }
 
     if (selectedEquipes.length === 0) {
-      showMessage("Selecione ao menos uma equipe", uuidv4());
+      showMessage("Selecione ao menos uma equipe");
       return;
     }
     if (selectedYears[0] === new Date().getFullYear() && selectedMonth === String(new Date().getMonth() + 1)) {
-      showMessage("Não é possível consultar o mês atual, por favor selecione outro!", uuidv4());
+      showMessage("Não é possível consultar o mês atual, por favor selecione outro!");
       return;
     }
 
     setIsConsultando(true);
-
-    setTotalConsultas(selectedEquipes.length * rhaps.length);
+    setLoaded(false);
 
     selectedEquipes.forEach(nomeEquipe => {
       const equipe = equipes.find(e => e['nome'] === nomeEquipe);
@@ -189,42 +188,58 @@ const RHAP = () => {
                 .then(resposta => {
                   if (!resposta['error']) {
 
-                    const itensDemonstrativoUtilizacaoHoras = resposta[0]['itensDemonstrativoUtilizacaoHoras']
-                    const itensQuadroUtilizacaoHoras = resposta[0]['itensQuadroUtilizacaoHoras']
+                    const RhapObj = resposta[0];
 
-                    /**
-                     * 1. HLJ ajustado = HLJ - HPSD + HPA
-                     * 2. Coeficiente de Horas Trabalhadas - CHT = HPS / HLJ ajustado
-                     */
+                    const consulta = [{
+                      Deate: RhapObj['siglaUnidade'],
+                      Equipe: RhapObj['siglaEquipe'],
+                      Servidor: RhapObj['nomeServidor'],
+                      dataInicial: RhapObj['dataInicial'],
+                      dataFinal: RhapObj['dataFinal'],
+                      qtdDiasUteis: RhapObj['qtdDiasUteis'],
+                      existeFraInconsistente: RhapObj['existeFraInconsistente'],
+                      frasAbertos: RhapObj['frasAbertos'],
+                      frasInconsistentes: RhapObj['frasInconsistentes'],
+                      potencialHoras: RhapObj['potencialHoras'],
+                      hljAjustado: RhapObj['hljAjustado'],
+                      CHT: RhapObj['cht'],
+                      IAH: RhapObj['iah'],
+                      indiceAderenciaIAH: RhapObj['indiceAderenciaIAH'],
+                      iahXIndiceAderenciaIAH: RhapObj['iahXIndiceAderenciaIAH'],
+                      producao: RhapObj['producao'],
+                      producaoPorJulgador: RhapObj['producaoPorJulgador'],
+                    }]
 
-                    const HLJ = itensDemonstrativoUtilizacaoHoras.find(i => i['sigla'] === 'HLJ')
-                    const HPA = itensQuadroUtilizacaoHoras.find(i => i['descricao'] === "Processos trabalhados em meses anteriores (HPA)")
-                    const HPSD = itensQuadroUtilizacaoHoras.find(i => i['descricao'] === "Total de horas em processos em análise (HPSD)")
-                    const HPS = itensQuadroUtilizacaoHoras.find(i => i['descricao'] === "Total de horas em processos saídos (HPS)")
+                    RhapObj['itensDemonstrativoUtilizacaoHoras'].forEach(item => {
+                      consulta[0][item['descricao']] = item['horas'];
+                    })
 
-                    const HLJ_ajustado = (HLJ['horas'] - HPSD['horasEfetivas'] + HPA['horasEfetivas'])
-                    const CHT = Math.round(HPS['horasEstimadas'] / HLJ_ajustado * 100) / 100
+                    RhapObj['itensIndicadorTemporalidade'].forEach(item => {
+                      consulta[0][item['descricao']] = item['valor'];
+                    })
 
-                    /**
-                     * 3. Índice de Aproveitamento de Horas no Julgamento - IAH = HLJ / HBJ
-                     */
-
-                    const HBJ = itensDemonstrativoUtilizacaoHoras.find(i => i['sigla'] === 'HBJ')
-                    const IAH = Math.round(HLJ['horas'] / HBJ['horas'] * 100) / 100
+                    RhapObj['itensQuadroUtilizacaoHoras'].forEach(item => {
+                      consulta[0][`${item['descricao']} - horas efetivas`] = item['horasEfetivas'];
+                      consulta[0][`${item['descricao']} - horas estimadas`] = item['horasEstimadas'];
+                    })
 
                     setListaResultado(prevListaResultado => [
                       ...prevListaResultado,
-                      ...[{
-                        nomeUnidade: selectedDeate['nome'],
-                        nomeEquipe: equipe['sigla'],
-                        dataInicial: rhap['dataInicial'],
-                        dataFinal: rhap['dataFinal'],
-                        usuarioNome: usuario['nome'],
-                        cht: CHT,
-                        iah: IAH
-                      }],
-                    ]);
+                      ...consulta]);
+                  } else {
 
+                    const erro = [{
+                      Deate: selectedDeate['nome'],
+                      Equipe: equipe['nome'],
+                      Servidor: usuario['nome'],
+                      dataInicial: rhap['dataInicial'] ,
+                      dataFinal: rhap['dataFinal'],
+                      erro: resposta['message'],
+                    }]
+
+                    setListaErro(prevListaErro => [
+                      ...prevListaErro,
+                      ...erro])
                   }
                   setCount(prevCount => prevCount + 1);
                 })
@@ -242,30 +257,29 @@ const RHAP = () => {
     if (count === totalConsulta) {
       setIsConsultando(false);
       if (totalConsulta >= 1 && count >= 1) {
-        setLoaded(false);
-        setShowResultTable(true);
+        setLoaded(true);
         setCount(0);
+        setTotalConsultas(0);
         setSelectedEquipes([]);
-        // setPeriodo({ inicial: "", final: "" });
+
+        const wb = XLSX.utils.book_new();
+        const ws = XLSX.utils.json_to_sheet(listaResultado);
+        XLSX.utils.book_append_sheet(wb, ws, "RHAP");
+        if (listaErro.length > 0) {
+          const wr = XLSX.utils.json_to_sheet(listaErro);
+          XLSX.utils.book_append_sheet(wb, wr, "ERRO");
+        }
+        XLSX.writeFile(wb, "RHAP.xlsx");
+
       }
     }
-  }, [count, totalConsulta]);
+  }, [count, totalConsulta, listaResultado, listaErro]);
 
   return (
     <>
       {isConsultando && (
         <LoadingTableScreen total={totalConsulta} count={count}
-          label={(<p>Gerando um total de <span>{totalConsulta}</span>{" "}RHAPs.</p>)}
-        />
-      )}
-      {showResultTable && (
-        <TableComponent
-          columns={GROUPED_COLUMNS}
-          listaResultado={listaResultado}
-          onClose={valor => {
-            setShowResultTable(valor);
-            setLoaded(true);
-          }}
+                            label={(<p>Gerando um total de <span>{totalConsulta}</span>{" "}RHAPs.</p>)}
         />
       )}
       {loaded && <RelatorioLayout
