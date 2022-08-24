@@ -25,21 +25,21 @@ function App() {
   useEffect(() => {
     autenticarEprocesso();
 
-    const timer = setInterval(() => {
-      fetch('https://localhost:8443/ctx/run/DEATE%20-%20relatorios%20gerenciais/isAutenticado')
-        .then(resp => resp.json()
-          .then(autenticado => {
-            if (!autenticado) {
-              autenticarEprocesso();
-            }
-          })
-          .catch(e => console.log(e))
-        )
-    }, 60000);
-
-    return () => {
-      clearInterval(timer);
-    };
+    // const timer = setInterval(() => {
+    //   fetch('https://localhost:8443/ctx/run/DEATE%20-%20relatorios%20gerenciais/isAutenticado')
+    //     .then(resp => resp.json()
+    //       .then(autenticado => {
+    //         if (!autenticado) {
+    //           autenticarEprocesso();
+    //         }
+    //       })
+    //       .catch(e => console.log(e))
+    //     )
+    // }, 60000);
+    //
+    // return () => {
+    //   clearInterval(timer);
+    // };
   }, []);
 
   const sideBarHandle = () => {
