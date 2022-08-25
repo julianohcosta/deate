@@ -232,7 +232,7 @@ const RHAP = () => {
                       Deate: selectedDeate['nome'],
                       Equipe: equipe['nome'],
                       Servidor: usuario['nome'],
-                      dataInicial: rhap['dataInicial'] ,
+                      dataInicial: rhap['dataInicial'],
                       dataFinal: rhap['dataFinal'],
                       erro: resposta['message'],
                     }]

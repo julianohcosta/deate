@@ -1,205 +1,207 @@
 .table-container {
-  padding: 0.5em 0.5em;
-  width: 100%;
-  height: 100%;
-  /* padding: 1em 1em; */
-  margin: 0 auto;
+    padding: 0.5em 0.5em;
+    width: 100%;
+    height: 100%;
+    /* padding: 1em 1em; */
+    margin: 0 auto;
 
-  border-radius: 12px;
-  box-shadow: 0 0 18px rgba(32, 26, 26, 0.2);
-  overflow: auto;
+    border-radius: 12px;
+    box-shadow: 0 0 18px rgba(32, 26, 26, 0.2);
+    overflow: auto;
 }
 
 .table-resultado {
-  width: 100%;
-  font-family: Nunito, sans-serif;
-  border-collapse: collapse;
-  overflow: auto;
+    width: 100%;
+    font-family: Nunito, sans-serif;
+    border-collapse: collapse;
+    overflow: auto;
 }
 
 .table-resultado td,
 .table-resultado th {
-  border: 1px solid #ddd;
-  padding: 1em;
+    border: 1px solid #ddd;
+    padding: 1em;
 }
 
 .table-resultado tr {
-  font-size: 0.5em;
+    font-size: 0.5em;
 }
 
 .table-resultado tr:nth-child(even) {
-  background-color: #ffffff;
+    background-color: #ffffff;
 }
+
 .table-resultado tr:nth-child(odd) {
-  background-color: #f2e9d8;
+    background-color: #f2e9d8;
 }
 
 .table-resultado tr:hover {
-  background-color: #ddd;
+    background-color: #ddd;
 }
 
 .table-resultado th {
-  font-size: 1em;
-  padding-top: 0.6em;
-  padding-bottom: 0.4rem;
-  text-align: center;
-  background-color: #04aa6d;
-  color: white;
+    font-size: 1em;
+    padding-top: 0.6em;
+    padding-bottom: 0.4rem;
+    text-align: center;
+    background-color: #04aa6d;
+    color: white;
 }
 
 .container-pagination {
-  display: flex;
-  gap: 1em;
-  margin-top: 1em;
-  font-size: 0.6em;
+    display: flex;
+    gap: 1em;
+    margin-top: 1em;
+    font-size: 0.6em;
 }
+
 .container-pagination--btn {
-  display: flex;
-  gap: 0.2em;
-  align-items: center;
-  justify-items: center;
+    display: flex;
+    gap: 0.2em;
+    align-items: center;
+    justify-items: center;
 }
 
 .container-pagination span > input[type="number"] {
-  width: 3em;
-  height: 1.8em;
-  border: 1px solid #ddd;
+    width: 3em;
+    height: 1.8em;
+    border: 1px solid #ddd;
 }
 
 .container-pagination select {
-  width: 6em;
-  height: 1.8em;
-  border: 1px solid #ddd;
-  font-size: inherit;
+    width: 6em;
+    height: 1.8em;
+    border: 1px solid #ddd;
+    font-size: inherit;
 }
 
 .container-pagination--btn + button {
-  /* padding: 0.3em 0.3em; */
-  height: 1.8em;
-  align-self: center;
+    /* padding: 0.3em 0.3em; */
+    height: 1.8em;
+    align-self: center;
 }
 
 .container-search-export-close {
-  display: flex;
-  align-items: center;
-  gap: 1em;
-  margin-bottom: 0.8em;
-  font-size: 0.7em;
-  justify-items: center;
-  justify-content: space-between;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    margin-bottom: 0.8em;
+    font-size: 0.7em;
+    justify-items: center;
+    justify-content: space-between;
 }
 
 .container-export {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.8rem;
-  position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    position: relative;
 }
 
 .container-export p {
-  margin: 0;
-  font-weight: 500;
+    margin: 0;
+    font-weight: 500;
 }
 
 .btn-export--excel,
 .btn-export--csv,
 .btn-export--close {
-  font-size: 1.6em;
-  transition: all 0.2s;
-  cursor: pointer;
-  box-shadow: 0 0 12px rgba(27, 23, 152, 0.25);
+    font-size: 1.6em;
+    transition: all 0.2s;
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(27, 23, 152, 0.25);
 }
 
 .btn-export--csv {
-  font-size: 1.5em;
+    font-size: 1.5em;
 }
 
 .btn-export--csv:hover,
 .btn-export--excel:hover,
 .btn-export--close:hover {
-  transform: scale(1.05);
+    transform: scale(1.05);
 }
 
 .container-search {
-  display: flex;
-  align-items: center;
-  gap: 1em;
-  color: var(--bg-primary-clr);
-  font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    color: var(--bg-primary-clr);
+    font-weight: 500;
 }
 
 .container-search input {
-  width: 100%;
-  height: 1.2em;
+    width: 100%;
+    height: 1.2em;
 }
 
 .hidden {
-  display: none;
+    display: none;
 }
 
 /* Tooltips */
 
 .tooltip .tooltiptext-csv {
-  visibility: hidden;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  border-radius: 5px;
-  padding: 5px 0;
-  position: absolute;
-  left: 50%;
-  z-index: 5;
-  margin-left: -7em;
-  opacity: 0;
-  transition: opacity 0.3s;
-  font-size: 0.6em;
-  padding: 0.4em 0.4em;
+    visibility: hidden;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px 0;
+    position: absolute;
+    left: 50%;
+    z-index: 5;
+    margin-left: -7em;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.6em;
+    padding: 0.4em 0.4em;
 }
 
 .tooltip .tooltiptext-csv::after {
-  content: "";
-  position: absolute;
-  top: 32%;
-  right: -6%;
-  transform: rotate(-90deg);
-  margin-right: -0.6em;
-  border-width: 0.6em;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
+    content: "";
+    position: absolute;
+    top: 32%;
+    right: -6%;
+    transform: rotate(-90deg);
+    margin-right: -0.6em;
+    border-width: 0.6em;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
 }
 
 .tooltip .tooltiptext-excel {
-  width: 50%;
-  visibility: hidden;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  border-radius: 5px;
-  position: absolute;
-  top: -15%;
-  left: 145%;
-  z-index: 5;
-  margin-left: -6em;
-  opacity: 0;
-  transition: opacity 0.3s;
-  font-size: 0.6em;
-  padding: 0.4em 0.2em;
+    width: 50%;
+    visibility: hidden;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    position: absolute;
+    top: -15%;
+    left: 145%;
+    z-index: 5;
+    margin-left: -6em;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.6em;
+    padding: 0.4em 0.2em;
 }
 
 .tooltip .tooltiptext-excel::after {
-  content: "";
-  position: absolute;
-  top: 40%;
-  right: 106%;
-  transform: rotate(90deg);
-  margin-right: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
+    content: "";
+    position: absolute;
+    top: 40%;
+    right: 106%;
+    transform: rotate(90deg);
+    margin-right: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
 }
 
 .tooltip:hover .tooltiptext {
-  visibility: visible;
-  opacity: 1;
+    visibility: visible;
+    opacity: 1;
 }

@@ -1,18 +1,18 @@
-import { format } from "date-fns";
+import {format} from "date-fns";
 
 const MONTHS_INDEX = [
-  { mes: "Jan", id: 0 },
-  { mes: "Fev", id: 1 },
-  { mes: "Mar", id: 2 },
-  { mes: "Abr", id: 3 },
-  { mes: "Mai", id: 4 },
-  { mes: "Jun", id: 5 },
-  { mes: "Jul", id: 6 },
-  { mes: "Ago", id: 7 },
-  { mes: "Set", id: 8 },
-  { mes: "Out", id: 9 },
-  { mes: "Nov", id: 10 },
-  { mes: "Dez", id: 11 },
+  {mes: "Jan", id: 0},
+  {mes: "Fev", id: 1},
+  {mes: "Mar", id: 2},
+  {mes: "Abr", id: 3},
+  {mes: "Mai", id: 4},
+  {mes: "Jun", id: 5},
+  {mes: "Jul", id: 6},
+  {mes: "Ago", id: 7},
+  {mes: "Set", id: 8},
+  {mes: "Out", id: 9},
+  {mes: "Nov", id: 10},
+  {mes: "Dez", id: 11},
 ];
 
 const getMonthAndYear = dateStr => {
@@ -36,7 +36,7 @@ export const GROUPED_COLUMNS = [
   {
     Header: "Frequência",
     accessor: "frequencia",
-    Cell: ({ value }) => {
+    Cell: ({value}) => {
       return format(new Date(...getMonthAndYear(value)), "MMM/yyyy");
     },
   },

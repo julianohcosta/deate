@@ -57,8 +57,8 @@ const SideBar = props => {
 
           <li>
             <span className={classes.sidebarItem} onClick={() => {
-                props.onSelectMenu('rhap');
-              }}>
+              props.onSelectMenu('rhap');
+            }}>
               RHAP
             </span>
           </li>

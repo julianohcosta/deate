@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import {useContext} from "react";
 import SelectedDeateContext from "../context/selected-deate-context";
 import classes from "./ListItem.module.css";
 
@@ -16,11 +16,11 @@ const ListItem = props => {
       style={
         isSelected
           ? {
-              backgroundColor: "#003399",
-              color: "#fff",
-              transform: "translateX(0.15em)",
-              boxShadow: "-4px 0 12px rgba(110, 146, 212, 0.8)",
-            }
+            backgroundColor: "#003399",
+            color: "#fff",
+            transform: "translateX(0.15em)",
+            boxShadow: "-4px 0 12px rgba(110, 146, 212, 0.8)",
+          }
           : {}
       }
       onClick={() => props.onDeateClick(unidade)}

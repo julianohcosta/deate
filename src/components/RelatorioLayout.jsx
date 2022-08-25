@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import SelectedDeateContext from "../context/selected-deate-context";
-import { Col, Divider, Row } from "antd";
+import {Col, Divider, Row} from "antd";
 import Button from "../components/UI/Button";
 import OptionBar from "./OptionBar";
 import DeateEquipe from "./DeateEquipe";
@@ -45,7 +45,7 @@ const RelatorioLayout = props => {
   return (
     <SelectedDeateContext.Provider value={selectedDeate}>
       <Divider orientation="center">{pageTitle} - Opções de Consulta</Divider>
-      <Row align={"bottom"} gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+      <Row align={"bottom"} gutter={{xs: 8, sm: 16, md: 24, lg: 32}}>
         <Col span={5} push={0} className={styles["deate-container"]}>
           <Deate
             unidades={props.unidades}

@@ -1,87 +1,87 @@
 .autenticando {
-  display: flex;
-  flex-direction: column;
-  top: 20% !important;
-  left: 35% !important;
-  width: 25% !important;
-  height: 20% !important;
-  justify-content: center;
-  border-radius: 5px;
-  font-size: 0.8em;
+    display: flex;
+    flex-direction: column;
+    top: 20% !important;
+    left: 35% !important;
+    width: 25% !important;
+    height: 20% !important;
+    justify-content: center;
+    border-radius: 5px;
+    font-size: 0.8em;
 }
 
 .autenticando-card {
-  text-align: center;
-  width: 100%;
-  height: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-  border-radius: 10px;
-  font-size: 1em;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    border-radius: 10px;
+    font-size: 1em;
 }
 
 .scanner {
-  width: 100%;
+    width: 100%;
 }
 
 .scanner h1 {
-  color: transparent;
-  font-size: 1em;
-  position: relative;
-  overflow: hidden;
+    color: transparent;
+    font-size: 1em;
+    position: relative;
+    overflow: hidden;
 }
 
 .scanner h1::before {
-  content: "Autenticando no eProcesso...";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 90%;
-  border-right: 4px solid #003399;
-  overflow: hidden;
-  color: #003399;
-  animation: load91371 4s linear infinite;
+    content: "Autenticando no eProcesso...";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 90%;
+    border-right: 4px solid #003399;
+    overflow: hidden;
+    color: #003399;
+    animation: load91371 4s linear infinite;
 }
 
 @keyframes load91371 {
-  0%,
-  10%,
-  100% {
-    width: 0;
-  }
+    0%,
+    10%,
+    100% {
+        width: 0;
+    }
 
-  10%,
-  20%,
-  30%,
-  40%,
-  50%,
-  60%,
-  70%,
-  80%,
-  90%,
-  100% {
-    border-right-color: transparent;
-  }
+    10%,
+    20%,
+    30%,
+    40%,
+    50%,
+    60%,
+    70%,
+    80%,
+    90%,
+    100% {
+        border-right-color: transparent;
+    }
 
-  11%,
-  21%,
-  31%,
-  41%,
-  51%,
-  61%,
-  71%,
-  81%,
-  91% {
-    border-right-color: #003399;
-  }
+    11%,
+    21%,
+    31%,
+    41%,
+    51%,
+    61%,
+    71%,
+    81%,
+    91% {
+        border-right-color: #003399;
+    }
 
-  40%,
-  60%,
-  80% {
-    width: 100%;
-  }
+    40%,
+    60%,
+    80% {
+        width: 100%;
+    }
 }

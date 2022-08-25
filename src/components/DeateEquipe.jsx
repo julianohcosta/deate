@@ -1,5 +1,5 @@
-import { Checkbox, Space } from "antd";
-import { useState } from "react";
+import {Checkbox, Space} from "antd";
+import {useState} from "react";
 import classes from "./DeateEquipe.module.css";
 
 const DeateEquipe = props => {

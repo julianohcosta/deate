@@ -1,7 +1,7 @@
 import React from "react";
 // import { FiSearch } from "react-icons/fi";
 
-const GlobalFilterComponent = ({ filter, setFilter }) => {
+const GlobalFilterComponent = ({filter, setFilter}) => {
   return (
     <>
       {/* <FiSearch /> */}

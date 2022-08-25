@@ -1,23 +1,23 @@
 :root {
-  box-sizing: border-box;
+    box-sizing: border-box;
 
-  /** VARIÁVEIS */
-  --main-font: "Open Sans", Arial, sans-serif;
-  --bg-primary-clr: #00205b;
-  --bg-secondary-clr: #64a70b;
-  --header-text-clr: #ffffff;
-  --main-text-color: #212529;
-  --secondary-text-color: #e6e6e6;
+    /** VARIÁVEIS */
+    --main-font: "Open Sans", Arial, sans-serif;
+    --bg-primary-clr: #00205b;
+    --bg-secondary-clr: #64a70b;
+    --header-text-clr: #ffffff;
+    --main-text-color: #212529;
+    --secondary-text-color: #e6e6e6;
 }
 
 *,
 ::before,
 ::after {
-  box-sizing: inherit;
+    box-sizing: inherit;
 }
 
 html,
 body {
-  font-size: calc(0.5em + 1vw);
-  color: var(--main-text-color);
+    font-size: calc(0.5em + 1vw);
+    color: var(--main-text-color);
 }

@@ -16,7 +16,7 @@ const meses = ['Janeiro', 'Fevereiro',
   'Novembro', 'Dezembro']
 
 const anos = [];
-for (let i = 2018; i<=new Date().getFullYear(); i++){
+for (let i = 2018; i <= new Date().getFullYear(); i++) {
   anos.push(i);
 }
 
@@ -64,7 +64,8 @@ const OptionBar = props => {
               return (
                 <Option key={idx} value={ano} label={ano}>
                   <div className="ano-item">{ano}</div>
-                </Option>)})}
+                </Option>)
+            })}
           </Select>
           <span
             style={{marginLeft: "0.5em", fontSize: "0.725rem"}}
@@ -78,7 +79,9 @@ const OptionBar = props => {
             onChange={handleMonthChange}
           >
             <Option value="">Todos</Option>
-            {meses.map((mes, idx) => {return (<Option key={idx+1} value={idx+1}>{mes}</Option>)})}}
+            {meses.map((mes, idx) => {
+              return (<Option key={idx + 1} value={idx + 1}>{mes}</Option>)
+            })}}
           </Select>
         </Space>
       )}

@@ -10,7 +10,7 @@ const ProgressBar = props => {
     <>
       <div
         className={classes["progress-bar--bar"]}
-        style={{ width: `${percentNow}%` }}
+        style={{width: `${percentNow}%`}}
       >
         <p className={classes["progress-bar--percent"]}>
           {percentNow === 0 ? 0 : percentNow}%
@@ -20,7 +20,7 @@ const ProgressBar = props => {
   );
 };
 
-const CreatingTableScreen = ({ total, count, label }) => {
+const CreatingTableScreen = ({total, count, label}) => {
   return (
     <Modal classNameOverlay={classes["creating-table-screen-container"]}>
       <Card className={classes["creating-table-screen--header"]}>
@@ -38,7 +38,7 @@ const CreatingTableScreen = ({ total, count, label }) => {
           </p>
         </div>
       </Card>
-      <ProgressBar numEquipes={total} currentCount={count} />
+      <ProgressBar numEquipes={total} currentCount={count}/>
     </Modal>
   );
 };
