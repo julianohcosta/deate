@@ -1,45 +1,52 @@
 .main-header {
-    color: var(--header-text-clr);
-    background: var(--bg-primary-clr) linear-gradient(
-            90deg,
-            rgba(0, 32, 91, 1) 0%,
-            rgba(0, 32, 91, 1) 43%,
-            rgba(191, 199, 214, 1) 100%
+  color: var(--header-text-clr);
+  background: var(--bg-primary-clr)
+    linear-gradient(
+      90deg,
+      rgba(0, 32, 91, 1) 0%,
+      rgba(0, 32, 91, 1) 43%,
+      rgba(191, 199, 214, 1) 100%
     );
 
-    position: relative;
+  position: relative;
 }
 
 .header-text {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .hamburguer-menu {
-    font-size: 1rem;
-    margin: auto 1em;
+  font-size: 1rem;
+  margin: auto 1em;
 }
 
 .username {
-    position: absolute;
-    font-size: 0.6rem;
-    font-weight: 700;
-    letter-spacing: 0.09em;
-    animation: slideUser 1s 1s forwards;
+  position: absolute;
+  font-size: 0.6rem;
+  font-weight: 700;
+  top: -0.7em;
+  right: 0;
+  letter-spacing: 0.09em;
+  animation: slideUser 1s 1s forwards;
 }
 
 @keyframes slideUser {
-    from {
-        top: -0.7em;
-        right: -20em;
-    }
-    to {
-        top: -0.7em;
-        right: 0;
-    }
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  80% {
+    transform: translateX(-10%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0);
+  }
 }
 
 .logolabin {
-    padding: 0.4em 0.3em;
-    width: 35%;
-    height: 35%;
+  padding: 0.4em 0.3em;
+  width: 35%;
+  height: 35%;
 }
