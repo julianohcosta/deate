@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import RelatorioLayout from "../components/RelatorioLayout";
+import montaConsulta from "../utils/utils";
 import { message } from "antd";
 import moment from "moment";
 import { v4 as uuidv4 } from "uuid";
@@ -215,46 +216,7 @@ const RHAP = () => {
                   if (!resposta["error"]) {
                     const RhapObj = resposta[0];
 
-                    const consulta = [
-                      {
-                        Deate: RhapObj["siglaUnidade"],
-                        Equipe: RhapObj["siglaEquipe"],
-                        Servidor: RhapObj["nomeServidor"],
-                        dataInicial: RhapObj["dataInicial"],
-                        dataFinal: RhapObj["dataFinal"],
-                        qtdDiasUteis: RhapObj["qtdDiasUteis"],
-                        existeFraInconsistente:
-                          RhapObj["existeFraInconsistente"],
-                        frasAbertos: RhapObj["frasAbertos"],
-                        frasInconsistentes: RhapObj["frasInconsistentes"],
-                        potencialHoras: RhapObj["potencialHoras"],
-                        hljAjustado: RhapObj["hljAjustado"],
-                        CHT: RhapObj["cht"],
-                        IAH: RhapObj["iah"],
-                        indiceAderenciaIAH: RhapObj["indiceAderenciaIAH"],
-                        iahXIndiceAderenciaIAH:
-                          RhapObj["iahXIndiceAderenciaIAH"],
-                        producao: RhapObj["producao"],
-                        producaoPorJulgador: RhapObj["producaoPorJulgador"],
-                      },
-                    ];
-
-                    RhapObj["itensDemonstrativoUtilizacaoHoras"].forEach(
-                      item => {
-                        consulta[0][item["descricao"]] = item["horas"];
-                      }
-                    );
-
-                    RhapObj["itensIndicadorTemporalidade"].forEach(item => {
-                      consulta[0][item["descricao"]] = item["valor"];
-                    });
-
-                    RhapObj["itensQuadroUtilizacaoHoras"].forEach(item => {
-                      consulta[0][`${item["descricao"]} - horas efetivas`] =
-                        item["horasEfetivas"];
-                      consulta[0][`${item["descricao"]} - horas estimadas`] =
-                        item["horasEstimadas"];
-                    });
+                    const consulta = montaConsulta(RhapObj);
 
                     setListaResultado(prevListaResultado => [
                       ...prevListaResultado,
@@ -286,21 +248,10 @@ const RHAP = () => {
     });
   };
 
-  const getUniqueHeaders = arrOfObjects => {
-    const sheetHeaders = arrOfObjects.map(res => Object.keys(res)).flat();
-    const sheetUniqueHeaders = [...new Set(sheetHeaders)].sort(
-      (a, b) => a.length - b.length
-    );
-    return sheetUniqueHeaders;
-  };
-
   const exportToExcel = (arrOfResults, arrOfError) => {
     const wb = XLSX.utils.book_new();
     const ws = XLSX.utils.json_to_sheet(arrOfResults);
-    const uniqueHeaders = getUniqueHeaders(arrOfResults);
     XLSX.utils.book_append_sheet(wb, ws, "RHAP");
-    /* Seta como head da tabela as chaves/keys do maior(len) obj da lista de resultados */
-    XLSX.utils.sheet_add_aoa(ws, [uniqueHeaders], { origin: "A1" });
     if (arrOfError.length > 0) {
       const wr = XLSX.utils.json_to_sheet(arrOfError);
       XLSX.utils.book_append_sheet(wb, wr, "ERRO");
