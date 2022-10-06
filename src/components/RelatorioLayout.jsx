@@ -22,6 +22,7 @@ const RelatorioLayout = props => {
           />
         );
       case "estoque":
+      case "usuario":
         return (
           <OptionBar
             type={`estoque`}
@@ -29,6 +30,7 @@ const RelatorioLayout = props => {
             onSelectedPeriod={props.onSelectedPeriod}
           />
         );
+
       default:
         return;
     }
@@ -39,8 +41,7 @@ const RelatorioLayout = props => {
     props.onSelectDeate(deate);
   };
 
-  const pageTitle =
-    props.optionBarType === "estoque" ? "Estoque Mensal" : "RHAP";
+  const pageTitle = (props.optionBarType === "estoque") ? "Estoque Mensal (Processo)" : (props.optionBarType === "usuario")? "Estoque Mensal (Usuário)" :"RHAP";
 
   return (
     <SelectedDeateContext.Provider value={selectedDeate}>

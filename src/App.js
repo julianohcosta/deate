@@ -5,6 +5,7 @@ import Main from "./pages/Main";
 import EstoqueMensal from "./pages/EstoqueMensal";
 import RHAP from "./pages/RHAP";
 import classes from "./App.module.css";
+import EstoqueUsuario from "./pages/EstoqueUsuario";
 
 function App() {
   const [visible, setVisible] = useState(false);
@@ -24,22 +25,6 @@ function App() {
 
   useEffect(() => {
     autenticarEprocesso();
-
-    // const timer = setInterval(() => {
-    //   fetch('https://localhost:8443/ctx/run/DEATE%20-%20relatorios%20gerenciais/isAutenticado')
-    //     .then(resp => resp.json()
-    //       .then(autenticado => {
-    //         if (!autenticado) {
-    //           autenticarEprocesso();
-    //         }
-    //       })
-    //       .catch(e => console.log(e))
-    //     )
-    // }, 60000);
-    //
-    // return () => {
-    //   clearInterval(timer);
-    // };
   }, []);
 
   const sideBarHandle = () => {
@@ -49,10 +34,13 @@ function App() {
   const selectMenuHandler = menuName => {
     switch (menuName) {
       case "estoque":
-        setSelectedMenu(<EstoqueMensal/>);
+        setSelectedMenu(<EstoqueMensal tipo={menuName}/>);
         break;
       case "rhap":
         setSelectedMenu(<RHAP/>);
+        break;
+      case "estoque-usuario":
+        setSelectedMenu(<EstoqueMensal tipo={`usuario`}/>);
         break;
       default:
         break;

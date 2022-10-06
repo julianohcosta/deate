@@ -17,12 +17,7 @@ const SideBar = props => {
     <aside className={classes.sidebar}>
       <Drawer
         title={(
-          <p style={{
-            fontSize: '0.875rem',
-            paddingTop: '0.925em',
-            color: 'var(--header-text-clr)',
-            fontWeight: '700'
-          }}>
+          <p style={{fontSize: '0.875rem', paddingTop: '0.925em', color: 'var(--header-text-clr)', fontWeight: '700'}}>
             <span>
               <span>
                 Relatórios - DEATE
@@ -31,43 +26,32 @@ const SideBar = props => {
             </span>
           </p>
         )}
-        headerStyle={{
-          backgroundColor: 'var(--bg-primary-clr)'
-        }}
+        headerStyle={{backgroundColor: 'var(--bg-primary-clr)'}}
         placement="left"
         size='default'
         onClose={props.onSideBarClose}
         visible={props.visible}
-        closeIcon={<CloseCircleOutlined style={{
-          fontSize: '1rem',
-          color: 'var(--header-text-clr)'
-        }}/>}
-      >
+        closeIcon={<CloseCircleOutlined style={{fontSize: '1rem', color: 'var(--header-text-clr)'}}/>}>
         <Divider style={dividerStyle}>Relatórios</Divider>
         <ul className={classes['link-container']}>
           <li>
             <span
               className={classes.sidebarItem}
-              onClick={() => {
-                props.onSelectMenu('estoque');
-              }}>
-                 Estoque Mensal
+              onClick={() => {props.onSelectMenu('estoque');}}>
+                 Estoque Mensal - Processo
             </span>
           </li>
-
           <li>
-            <span className={classes.sidebarItem} onClick={() => {
-              props.onSelectMenu('rhap');
-            }}>
+            <span className={classes.sidebarItem} onClick={() => {props.onSelectMenu('estoque-usuario');}}>
+              Estoque Mensal - Usuário
+            </span>
+          </li>
+          <li>
+            <span className={classes.sidebarItem} onClick={() => {props.onSelectMenu('rhap');}}>
               RHAP
             </span>
           </li>
 
-          <li>
-            <span className={classes.sidebarItem} onClick={() => console.log("clicou")}>
-              Outro Relatório
-            </span>
-          </li>
         </ul>
         <Divider style={dividerStyle}>Resultado</Divider>
       </Drawer>

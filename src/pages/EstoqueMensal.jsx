@@ -6,7 +6,7 @@ import {v4 as uuidv4} from 'uuid';
 import {message} from "antd";
 import {GROUPED_COLUMNS} from "../components/TableComponent/columnsEstoque";
 
-const EstoqueMensal = () => {
+const EstoqueMensal = (props) => {
   const [unidades, setUnidades] = useState([]);
   const [disabled, setDisabled] = useState(false);
   const [selectedEquipes, setSelectedEquipes] = useState([]);
@@ -106,16 +106,43 @@ const EstoqueMensal = () => {
     setTotalEquipes(selectedEquipes.length);
     setIsConsultando(true);
 
+
+
     for (const equipeNome of selectedEquipes) {
       const equipe = equipes.find(e => e.nome === equipeNome);
 
-      const url =
-        "https://localhost:8443/ctx/run/DEATE - relatorios gerenciais/relatorioEstoque" +
-        "?nomeDeate=" + selectedDeate.nome +
-        "&nomeEquipe=" + equipe.nome +
-        "&codigoEquipe=" + equipe.codigo +
-        "&periodoInicial=" + periodo.inicial +
-        "&periodoFinal=" + periodo.final;
+      let url = ""
+
+      if (props.tipo === "usuario") {
+        url =
+          "https://localhost:8443/ctx/run/DEATE - relatorios gerenciais/relatorioEstoqueUsuario" +
+          "?nomeDeate=" + selectedDeate.nome +
+          "&nomeEquipe=" + equipe.nome +
+          "&codigoEquipe=" + equipe.codigo +
+          "&periodoInicial=" + periodo.inicial +
+          "&periodoFinal=" + periodo.final;
+
+        GROUPED_COLUMNS.splice(3, 0,   {
+          Header: "Usuário",
+          accessor: "usuario",
+        })
+        GROUPED_COLUMNS.splice(4, 0,   {
+          Header: "Atividade",
+          accessor: "atividade",
+        })
+        GROUPED_COLUMNS.splice(5, 0,   {
+          Header: "Estoque Inicial",
+          accessor: "estoqueInicial",
+        })
+      } else {
+        url =
+          "https://localhost:8443/ctx/run/DEATE - relatorios gerenciais/relatorioEstoque" +
+          "?nomeDeate=" + selectedDeate.nome +
+          "&nomeEquipe=" + equipe.nome +
+          "&codigoEquipe=" + equipe.codigo +
+          "&periodoInicial=" + periodo.inicial +
+          "&periodoFinal=" + periodo.final;
+      }
 
       fetch(url)
         .then(response => response.json())
@@ -150,9 +177,7 @@ const EstoqueMensal = () => {
     <>
       {isConsultando && (
         <LoadingTableScreen total={totalEquipes} count={count}
-                            label={(
-                              <p>Gerando os relatórios de estoque para <span>{totalEquipes}</span>{" "}equipes.</p>)}
-        />
+                            label={(<p>Gerando os relatórios de estoque para <span>{totalEquipes}</span>{" "}equipes.</p>)}/>
       )}
 
       {showResultTable && (
@@ -169,7 +194,7 @@ const EstoqueMensal = () => {
         <RelatorioLayout
           disabled={disabled}
           equipes={equipes}
-          optionBarType={`estoque`}
+          optionBarType={props.tipo}
           unidades={unidades}
           onSelectEquipes={selectEquipeHandler}
           onSelectedPeriod={periodoHandler}
