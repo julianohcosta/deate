@@ -281,6 +281,7 @@ const RHAP = () => {
     <>
       {isConsultando && (
         <LoadingTableScreen
+          showBtnSalvar={false}
           total={totalConsulta}
           count={count}
           label={

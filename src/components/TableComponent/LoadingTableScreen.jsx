@@ -2,25 +2,32 @@ import classes from "./LoadingTableScreen.module.css";
 
 import Modal from "../UI/Modal";
 import Card from "../UI/Card";
+import Button from "../UI/Button";
 
 const ProgressBar = props => {
   const percentNow = Math.trunc((props.currentCount / props.numEquipes) * 100);
 
   return (
-    <>
-      <div
-        className={classes["progress-bar--bar"]}
-        style={{width: `${percentNow}%`}}
-      >
-        <p className={classes["progress-bar--percent"]}>
-          {percentNow === 0 ? 0 : percentNow}%
-        </p>
-      </div>
-    </>
+    <div
+      className={classes["progress-bar--bar"]}
+      style={{ width: `${percentNow}%` }}
+    >
+      <p className={classes["progress-bar--percent"]}>
+        {percentNow === 0 ? 0 : percentNow}%
+      </p>
+    </div>
   );
 };
 
-const CreatingTableScreen = ({total, count, label}) => {
+const LoadingTableScreen = ({
+  showBtnSalvar,
+  total,
+  count,
+  label,
+  onClickSalvarParcial,
+}) => {
+  let interromper = false;
+
   return (
     <Modal classNameOverlay={classes["creating-table-screen-container"]}>
       <Card className={classes["creating-table-screen--header"]}>
@@ -38,9 +45,17 @@ const CreatingTableScreen = ({total, count, label}) => {
           </p>
         </div>
       </Card>
-      <ProgressBar numEquipes={total} currentCount={count}/>
+      <ProgressBar numEquipes={total} currentCount={count} />
+      {showBtnSalvar && (
+        <Button
+          onClick={() => onClickSalvarParcial(!interromper)}
+          className={classes["btn_interromper"]}
+          type={"button"}
+          text={"Salvar Parcial"}
+        />
+      )}
     </Modal>
   );
 };
 
-export default CreatingTableScreen;
+export default LoadingTableScreen;

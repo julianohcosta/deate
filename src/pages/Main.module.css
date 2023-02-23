@@ -1,16 +1,17 @@
 .main {
-    margin: 1em auto;
-    padding-bottom: 1em;
-    width: 90vw;
-    min-height: 75vh;
-    border: 2px solid #7f8fad;
-    border-radius: 4px;
-    box-shadow: 0 0 18px rgba(67, 69, 71, 0.25);
-    background: white url(https://www1.suiterfb.receita.fazenda/camweb/pages/www1/login/imagens/fundo.jpg);
+  margin: 1em auto;
+  padding-bottom: 1em;
+  width: 90vw;
+  min-height: 75vh;
+  border: 2px solid #7f8fad;
+  border-radius: 4px;
+  box-shadow: 0 0 18px rgba(67, 69, 71, 0.25);
+  background: white
+    url(https://www1.suiterfb.receita.fazenda/camweb/pages/www1/login/imagens/fundo.jpg);
 }
 
 .header-bar {
-    width: 100%;
-    background-color: var(--bg-secondary-clr);
-    height: 0.25em;
+  width: 100%;
+  background-color: var(--bg-secondary-clr);
+  height: 0.25em;
 }

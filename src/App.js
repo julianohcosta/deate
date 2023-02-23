@@ -1,11 +1,10 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import AutenticandoEProcesso from "./components/UI/AutenticandoEProcesso";
 import SideBar from "./components/SideBar";
 import Main from "./pages/Main";
 import EstoqueMensal from "./pages/EstoqueMensal";
 import RHAP from "./pages/RHAP";
 import classes from "./App.module.css";
-import EstoqueUsuario from "./pages/EstoqueUsuario";
 
 function App() {
   const [visible, setVisible] = useState(false);
@@ -13,7 +12,9 @@ function App() {
   const [authenticated, setAuthenticated] = useState(false);
 
   const autenticarEprocesso = () => {
-    fetch("https://localhost:8443/ctx/run/DEATE%20-%20relatorios gerenciais/autenticarEprocesso")
+    fetch(
+      "https://localhost:8443/ctx/run/DEATE%20-%20relatorios gerenciais/autenticarEprocesso"
+    )
       .then(response => response.json())
       .then(systemAuthenticated => {
         setAuthenticated(systemAuthenticated.status);
@@ -21,7 +22,7 @@ function App() {
       .catch(e => {
         console.log(e);
       });
-  }
+  };
 
   useEffect(() => {
     autenticarEprocesso();
@@ -34,13 +35,13 @@ function App() {
   const selectMenuHandler = menuName => {
     switch (menuName) {
       case "estoque":
-        setSelectedMenu(<EstoqueMensal tipo={menuName}/>);
+        setSelectedMenu(<EstoqueMensal tipo={menuName} />);
         break;
       case "rhap":
-        setSelectedMenu(<RHAP/>);
+        setSelectedMenu(<RHAP />);
         break;
       case "estoque-usuario":
-        setSelectedMenu(<EstoqueMensal tipo={`usuario`}/>);
+        setSelectedMenu(<EstoqueMensal tipo={`usuario`} />);
         break;
       default:
         break;
@@ -50,7 +51,7 @@ function App() {
 
   return (
     <>
-      {!authenticated && <AutenticandoEProcesso/>}
+      {!authenticated && <AutenticandoEProcesso />}
       <div className={classes.container}>
         <SideBar
           onSideBarClose={sideBarHandle}

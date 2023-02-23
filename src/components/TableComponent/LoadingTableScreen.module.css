@@ -1,68 +1,78 @@
 .creating-table-screen-container {
-    display: flex;
-    flex-direction: column;
-    top: 20% !important;
-    left: 25% !important;
-    width: 50% !important;
-    height: 45% !important;
-    justify-content: center;
-    border-radius: 5px;
-    font-size: 0.8em;
+  display: flex;
+  flex-direction: column;
+  top: 20% !important;
+  left: 25% !important;
+  width: 50% !important;
+  height: 45% !important;
+  justify-content: center;
+  border-radius: 5px;
+  font-size: 0.8em;
 }
 
 .creating-table-screen--header {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }
 
 .creating-table-screen--header img {
-    padding: 0.4em 0.3em;
-    width: 10%;
-    height: 75%;
-    align-self: center;
+  padding: 0.4em 0.3em;
+  width: 10%;
+  height: 75%;
+  align-self: center;
 }
 
 .creating-table-screen--header--text {
-    display: flex;
-    color: #212529;
-    flex-direction: column;
+  display: flex;
+  color: #212529;
+  flex-direction: column;
 }
 
 .creating-table-screen--header--text span {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 .progress-bar--bar {
-    position: relative;
-    margin: 2em 0 0 0;
-    min-width: 5%;
-    height: 10%;
-    border-radius: 2px;
-    background-image: linear-gradient(
-            45deg,
-            #7f9dd3 20px,
-            rgba(229, 229, 229, 0.8) 30px,
-            #7f9dd3 40px
-    );
-    background-position: 100% 0;
-    background-size: 200%;
-    animation: shimmer 1.5s infinite;
+  position: relative;
+  margin: 2em 0 0 0;
+  min-width: 5%;
+  height: 10%;
+  border-radius: 2px;
+  background-image: linear-gradient(
+    45deg,
+    #7f9dd3 20px,
+    rgba(229, 229, 229, 0.8) 30px,
+    #7f9dd3 40px
+  );
+  background-position: 100% 0;
+  background-size: 200%;
+  animation: shimmer 1.5s infinite;
 }
 
 @keyframes shimmer {
-    to {
-        background-position: -100% 0;
-    }
+  to {
+    background-position: -100% 0;
+  }
 }
 
 .progress-bar--percent {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin: 0;
-    font-family: inherit;
-    font-size: 0.6em;
-    font-weight: 600;
-    color: #212529;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  font-family: inherit;
+  font-size: 0.6em;
+  font-weight: 600;
+  color: #212529;
+}
+
+.btn_interromper {
+  width: 30%;
+  height: 12%;
+  font-size: 0.7rem;
+  /* background-color: #e8590c; */
+  align-self: center;
+
+  margin-top: 1.4rem;
 }
