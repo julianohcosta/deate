@@ -167,8 +167,6 @@ const EstoqueMensal = props => {
         .catch(e => {
           console.log(e);
         });
-
-      if (!isConsultando) return;
     }
   };
 
